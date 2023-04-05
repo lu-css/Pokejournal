@@ -6,17 +6,21 @@
 
 Editor de Texto: https://stackedit.io/app#
 
-**Informações Gerais:**
-|        Documentação        |             API            | Autenticação |
-|:--------------------------:|:--------------------------:|:------------:|
-| https://pokeapi.co/docs/v2 | https://pokeapi.co/api/v2/ |    Não tem   |
+```java
+public class InformacoesGerais{
+  public final String Documentacao = "https://pokeapi.co/docs/v2"; 
+  public final String API = "https://pokeapi.co/api/v2/";
+  public final String Autenticacao = "Não tem";
+}
+```
 
-**Métodos:**
+
+*Métodos:*
 |  Nome | Identificação | Tipo |           Descrição           |
 |:-----:|:-------------:|:----:|:-----------------------------:|
 |Berries|     berry     |  GET |Retorna as frutinhas do pokémon|
 
-**Atributos:**
+*Atributos:*
 |     Nome     | Identificação | Dicionário de Dados: |           Descrição          |
 |:------------:|:-------------:|:--------------------:|:----------------------------:|
 | ID (Pokémon) |       id      |        inteiro       | Número do pokémon na pokédex |
