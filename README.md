@@ -23,10 +23,8 @@ public class InformacoesGerais{
 
 <details open="pokemon">
   <summary><b>POKÉMON:</summary></b>
-  <details open="Encounters">
- <summary><b>ENCOUNTERS:</summary></b>
   
-    1. Abilities  
+ 1. Abilities  
   - [<b>Identificação:</b> ability](#identificação)
   - [<b>Tipo:</b> GET](#1)
   - [<b>Decrição:</b> As habilidades fornecem efeitos passivos para Pokémon em batalha ou no mundo superior. Os Pokémon têm várias habilidades possíveis, mas podem ter apenas uma habilidade por vez. ](#2)
@@ -119,7 +117,6 @@ public class InformacoesGerais{
   - [<b>Identificação:</b> type](#identificação)
   - [<b>Tipo:</b> GET](#1)
   - [<b>Decrição:</b> Tipos são propriedades de Pokémon e seus movimentos. Cada tipo tem três propriedades: contra quais tipos de Pokémon é supereficaz, contra quais tipos de Pokémon não é muito eficaz e contra quais tipos de Pokémon é completamente ineficaz.](#2)
-
 
 </details>
 
