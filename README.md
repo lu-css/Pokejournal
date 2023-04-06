@@ -33,7 +33,7 @@ public class InformacoesGerais{
 </details>
 
 <details open="barries">
-  <summary><b>BARRY</summary></b>
+  <summary><b>BERRY:</summary></b>
   
  1. Berries
   - [<b>Identificação:</b> berry](#identificação)
