@@ -24,96 +24,95 @@ public class InformacoesGerais{
 <details open="pokemon">
   <summary><b>POKÉMON:</summary></b>
   
+  
  1. Abilities  
   - [<b>Identificação:</b> ability](#identificação)
   - [<b>Tipo:</b> GET](#1)
   - [<b>Decrição:</b> As habilidades fornecem efeitos passivos para Pokémon em batalha ou no mundo superior. Os Pokémon têm várias habilidades possíveis, mas podem ter apenas uma habilidade por vez. ](#2)
 
     
-    2. Characteristics  
+ 2. Characteristicas  
   - [<b>Identificação:</b> characteristic](#identificação)
   - [<b>Tipo:</b> GET](#1)
   - [<b>Decrição:</b> As características indicam qual estatística contém o IV mais alto de um Pokémon. A Característica de um Pokémon é determinada pelo restante de seu IV mais alto dividido por 5 (gene_modulo)](#2)
 
     
-    3. Egg Groups  
+ 3. Egg Groups  
   - [<b>Identificação:</b> egg-group](#identificação)
   - [<b>Tipo:</b> GET](#1)
   - [<b>Decrição:</b> Egg Groups são categorias que determinam quais Pokémon são capazes de cruzar. Os Pokémon podem pertencer a um ou dois Grupos de Ovos.](#2)
   
     
-    4. Genders  
+ 4. Genders  
   - [<b>Identificação:</b> gender](#identificação)
   - [<b>Tipo:</b> GET](#1)
   - [<b>Decrição:</b> Os gêneros foram introduzidos na Geração II para fins de criação de Pokémon, mas também podem resultar em diferenças visuais ou até mesmo em diferentes linhas evolutivas.  ](#2)
 
     
-    5. Growth Rates  
+ 5. Growth Rates  
   - [<b>Identificação:</b> growth-rate](#identificação)
   - [<b>Tipo:</b> GET](#1)
   - [<b>Decrição:</b> As taxas de crescimento são a velocidade com que os Pokémon ganham níveis através da experiência ](#2)
 
     
-    6. Natures  
+ 6. Natures  
   - [<b>Identificação:</b> nature](#identificação)
   - [<b>Tipo:</b> GET](#1)
   - [<b>Decrição:</b> As naturezas influenciam como as estatísticas de um Pokémon crescem.](#2)
 
     
-    7. Pokeathlon Stats  
+ 7. Pokeathlon Stats  
   - [<b>Identificação:</b> pokeathlon-stat](#identificação)
   - [<b>Tipo:</b> GET](#1)
   - [<b>Decrição:</b> Pokeathlon Stats são atributos diferentes do desempenho de um Pokémon em Pokéathlons. Nos Pokéathlons, as competições acontecem em diferentes percursos; um para cada uma das diferentes estatísticas do Pokéathlon.](#2)
  
-8. Pokémon  
+ 8. Pokémon  
   - [<b>Identificação:</b> pokemon](#identificação)
   - [<b>Tipo:</b> GET](#1)
   - [<b>Decrição:</b>  Mostra as informacões gerais do pokémon. Provavelmente o principal método do projeto, já que uma Pokédex<br>precisa das informações gerais acima de tudo](#2)
   - [<b>Parametros:</b> _name_ ou _id_](#3)
     
-  9. Pokemon Location Areas  
+ 9. Pokemon Location Areas  
   - [<b>Identificação:</b> pokemon](#identificação)
   - [<b>Tipo:</b> GET](#1)
   - [<b>Decrição:</b> As áreas de localização de Pokémon são áreas onde os Pokémon podem ser encontrados.](#2)
-
     
-      10. Pokemon Colors  
+ 10. Pokemon Colors
   - [<b>Identificação:</b> pokeathlon-stat](#identificação)
   - [<b>Tipo:</b> GET](#1)
   - [<b>Decrição:</b> Cores usadas para classificar Pokémon em um Pokédex. A cor listada no Pokédex geralmente é a cor mais aparente ou que cobre o corpo de cada Pokémon. Nenhuma categoria laranja existe; Pokémon que são principalmente laranjas são listados como vermelhos ou marrons.](#2)
-
     
-      11. Pokemon Forms  
+11. Pokemon Forms  
   - [<b>Identificação:</b> pokemon-form](#identificação)
   - [<b>Tipo:</b> GET](#1)
   - [<b>Decrição:</b> Alguns Pokémon podem aparecer em uma das várias formas visualmente diferentes. Essas diferenças são puramente cosméticas. Para variações dentro de uma espécie de Pokémon, que diferem em mais do que apenas visuais, a entidade 'Pokémon' é usada para representar tal variedade. ](#2)
 
     
-      12. Pokemon Habitats 
+12. Pokemon Habitats 
   - [<b>Identificação:</b> pokemon-habitat](#identificação)
   - [<b>Tipo:</b> GET](#1)
   - [<b>Decrição:</b> Habitats são geralmente terrenos diferentes em que os Pokémon podem ser encontrados, mas também podem ser áreas designadas para Pokémon raros ou lendários.](#2)
 
     
-      13. Pokemon Shapes  
+13. Pokemon Shapes  
   - [<b>Identificação:</b> pokemon-shape](#identificação)
   - [<b>Tipo:</b> GET](#1)
   - [<b>Decrição:</b> Formas usadas para classificar Pokémon em um Pokédex.](#2)
  
     
-      14. Pokemon Species  
+14. Pokemon Species  
   - [<b>Identificação:</b> pokemon-species](#identificação)
   - [<b>Tipo:</b> GET](#1)
   - [<b>Decrição:</b> Uma espécie de Pokémon forma a base para pelo menos um Pokémon. Os atributos de uma espécie de Pokémon são compartilhados por todas as variedades de Pokémon dentro da espécie. Um bom exemplo é Wormadam; Wormadam é a espécie que pode ser encontrada em três variedades diferentes, Wormadam-Trash, Wormadam-Sandy e Wormadam-Plant.](#2)
 
     
-      15. Stats  
+15. Stats  
   - [<b>Identificação:</b> stat](#identificação)
   - [<b>Tipo:</b> GET](#1)
   - [<b>Decrição:</b> As estatísticas determinam certos aspectos das batalhas. Cada Pokémon tem um valor para cada stat que cresce à medida que ganha níveis e pode ser alterado momentaneamente por efeitos nas batalhas. ](#2)
  
     
-      16. Types 
+16. Types 
   - [<b>Identificação:</b> type](#identificação)
   - [<b>Tipo:</b> GET](#1)
   - [<b>Decrição:</b> Tipos são propriedades de Pokémon e seus movimentos. Cada tipo tem três propriedades: contra quais tipos de Pokémon é supereficaz, contra quais tipos de Pokémon não é muito eficaz e contra quais tipos de Pokémon é completamente ineficaz.](#2)
