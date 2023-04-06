@@ -20,6 +20,9 @@ public class InformacoesGerais{
 |Pokémon|    pokemon    |  GET | Mostra as informacões gerais do pokémon.<br>Provavelmente o principal método do projeto, já que uma Pokédex<br>precisa das informações gerais acima de tudo|
 
 *Atributos:*
+
+Ainda não funciona devido a falta de CSS, porém irei arrumar, vou dormir agr... malz
+
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}
 .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
