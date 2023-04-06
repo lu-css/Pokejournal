@@ -1,5 +1,9 @@
 # Pesquisa sobre: PokéAPI
-<img src="img/Pokemon.png">
+
+<div align="center">
+<img src="img/Pokemon.png" height="530px">
+</div>
+
 ### 3°A Etim - Desenvolvimento de Sistemas
 > Débora Liberato Ribeiro ╰(*°▽°*)╯<br>
 > Pedro Luís Anghievisck ( •_•)>⌐■-■
