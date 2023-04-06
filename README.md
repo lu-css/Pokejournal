@@ -16,7 +16,7 @@ public class InfoGeral{
 }
 ```
 
-<h1>Principais Métodos:</h1>
+# <div align="center">_Principais Métodos:_</div>
 
 <details open="pokemon">
   <summary><b>POKÉMON:</summary></b>
@@ -309,3 +309,26 @@ public class InfoGeral{
   - [<b>Tipo:</b> GET](#1)
   - [<b>Decrição:</b>  Os movimentos dos alvos podem ser direcionados durante a batalha. Os alvos podem ser Pokémon, ambientes ou até mesmo outros movimentos.](#2)
 </details>
+
+# <div align="center">_Atributos:_</div>
+
+|            Nome           |       Identificador      |                                                                    Descrição                                                                    |   Tipo  |
+|:-------------------------:|:------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------:|:-------:|
+|        ID (Pokémon)       |            id            |                                Usado para pegar o número do Pokémon na Pokédex. Pode ser usado como um parâmetro.                               | integer |
+|       Nome (Pokémon)      |           name           |                                   Retorna o nome do pokémon, junto do ID, é um dos dois possíveis parâmetros.                                   |  string |
+|   Experiência (Pokémon)   |      base_experience     |                                               Exibe a experiência obtida ao derrotar esse Pokémon.                                              | integer |
+|      Altura (Pokémon)     |          height          |                                                   Retorna a altura do POkémon, em decímetros.                                                   | integer |
+|  Espécie Padrão (Pokémon) |        is_default        |                                                   Define um Pokémon padrão para cada espécie.                                                   | boolean |
+|      Order (Pokémon)      |           order          |                        Mostra a ordem de classificação. Quase que regional, exceto as famílias, que são agrupadas juntas.                       | integer |
+|       Peso (Pokémon)      |          weight          |                                                    Retorna O peso do Pokémon, em hectogramas.                                                   | integer |
+|   Habilidades (Pokémon)   |         abilities        |                                           Retorna uma lista de habilidades que este Pokémon pode ter.                                           |   list  |
+|      Formas (Pokémon)     |           forms          |                                              Mostra uma lista de formas que o Pokémon pode assumir.                                             |   list  |
+|      Indice (Pokémon)     |       game_indices       |                                 Retorna uma lista de índices de jogos relevantes para itens Pokémon por geração.                                |   list  |
+| Possíveis Itens (Pokémon) |        held_items        |                                  Exibe uma lista de itens que o Pokémon pode estar segurando quando encontrado.                                 |   list  |
+|      Áreas (Pokémon)      | location_area_encounters | Retorna um link para uma lista com localizações, assim como detalhes de encontros com outros treinadores, pertencentes a uma versão específica. |  string |
+|    Movimentos (Pokémon)   |           moves          |              Recupera uma lista de movimentos com métodos de aprendizado e detalhes de nível, pertencente a uma versão específica.              |   list  |
+|    Histórico (Pokémon)    |        past_types        |                           Retorna uma lista detalhada de todos os tipos que aquele Pokémon tinha em antigas gerações.                           |   list  |
+|       Foto (Pokémon)      |          sprites         |                                  Mostra um conjunto de "sprites" usados para representar este Pokémon no jogo.                                  |   list  |
+|     Espécie (Pokémon)     |          species         |                                                    Exibe a espécie a qual o Pokémon pertence.                                                   |   list  |
+|      Status (Pokémon)     |           stats          |                                                Recupera uma lista dos status base desse Pokémon.                                                |   list  |
+|     Tipagem (Pokémon)     |           types          |                                           Mostra uma detalhada lista contendo a tipagem desse Pokémon.                                          |   list  |
