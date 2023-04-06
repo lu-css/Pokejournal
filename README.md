@@ -91,6 +91,22 @@ public class InformacoesGerais{
 </details>
 
 
+<details open="Evolution">
+ <summary><b>ENCOUNTERS:</summary></b>
+  
+  1. Evolution Chains
+  - [<b>Identificação:</b> evolution-chain](#identificação)
+  - [<b>Tipo:</b> GET](#1)
+  - [<b>Decrição:</b> Cadeias de evolução são essencialmente árvores genealógicas. Eles começam com o estágio mais baixo dentro de uma família e detalham as condições de evolução para cada um, bem como os Pokémon para os quais eles podem evoluir na hierarquia.  ](#2)
+  
+  
+   2. Evolution Triggers 
+  - [<b>Identificação:</b> evolution-trigger](#identificação)
+  - [<b>Tipo:</b> GET](#1)
+  - [<b>Decrição:</b> Gatilhos de evolução são os eventos e condições que fazem com que um Pokémon evolua.](#2)
+  
+</details>
+
 
 
 
