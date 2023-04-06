@@ -24,9 +24,10 @@ public class InformacoesGerais{
 <details>
   <summary>Berry:</summary>
 
-1. Berries:
-  - Tipo - Get
-  - Decrição - Retorna as frutas existentes no mundo de Pokémon
+1. Pokémon:
+  - Identificação: pokemon
+  - Tipo - GET
+  - Decrição - Mostra as informacões gerais do pokémon.<br>Provavelmente o principal método do projeto, já que uma Pokédex<br>precisa das informações gerais acima de tudo
    
 </details>
 
