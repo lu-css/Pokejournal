@@ -21,22 +21,41 @@ public class InformacoesGerais{
 
 <h1>Principais Métodos:</h1>
 
-<details>
-  <summary>Berry:</summary>
+<details open="pokemon">
+  <summary><b>POKÉMON:</summary></b>
+  
+  - [<b>Nome:</b> Pokémon](#Nome)
+  - [<b>Identificação:</b> pokemon](#identificação)
+  - [<b>Tipo:</b> GET](#1)
+  - [<b>Decrição:</b>  Mostra as informacões gerais do pokémon. Provavelmente o principal método do projeto, já que uma Pokédex<br>precisa das informações gerais acima de tudo](#2)
 
-1. Pokémon:
-  - Identificação: pokemon
-  - Tipo - GET
-  - Decrição - Mostra as informacões gerais do pokémon.<br>Provavelmente o principal método do projeto, já que uma Pokédex<br>precisa das informações gerais acima de tudo
-   
 </details>
 
-|  Nome | Identificação | Tipo |           Descrição           |
-|:-----:|:-------------:|:----:|:-----------------------------:|
-|Pokémon|    pokemon    |  GET | Mostra as informacões gerais do pokémon.<br>Provavelmente o principal método do projeto, já que uma Pokédex<br>precisa das informações gerais acima de tudo|
-|Berries|     berry     |  GET | Retorna as frutinhas do jogo,<br>não será usada no aplicativo  |
-|BerryFirmnesses|berry-firmness| GET | Diz a consistência que a frutinha tem|
-| BerryFlavors | berry-flavor| GET | Descreve se o Pokémon sofre dano ou benefício ao comer a fruta com base na sua espécie| 
-|Contest Types| contest-type| GET | Os tipos de concurso são categorias que os juízes usam para avaliar a condição de um Pokémon em concursos de Pokémon|
+<details open="barries">
+  <summary><b>BARRY</summary></b>
+  
+ 1.Berries
+  - [<b>Nome:</b> Barries](#Nome)
+  - [<b>Identificação:</b> berry](#identificação)
+  - [<b>Tipo:</b> GET](#1)
+  - [<b>Decrição:</b> Retorna as frutinhas do jogo,<br>não será usada no aplicativo  ](#2)
+  
+  2.Berry Firmnesses
+  - [<b>Nome:</b> BarryFirmNesses](#Nome)
+  - [<b>Identificação:</b> berry-firmness](#identificação)
+  - [<b>Tipo:</b> GET](#1)
+  - [<b>Decrição:</b> Diz a consistência que a frutinha tem  ](#2)
+  
+  3.Berry Flavors
+  - [<b>Nome:</b> BerryFlavors](#Nome)
+  - [<b>Identificação:</b> berry-flavor](#identificação)
+  - [<b>Tipo:</b> GET](#1)
+  - [<b>Decrição:</b> Descreve se o Pokémon sofre dano ou benefício ao comer a fruta com base na sua espécie ](#2)
+</details>
 
-*Atributos:*
+
+
+
+
+
+
