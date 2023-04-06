@@ -44,7 +44,7 @@ public class InformacoesGerais{
   - [<b>Tipo:</b> GET](#1)
   - [<b>Decrição:</b> Diz a consistência que a frutinha tem.  ](#2)
   
-  3. Berry Flavors
+  3. Berry Flavorss
   - [<b>Identificação:</b> berry-flavor](#identificação)
   - [<b>Tipo:</b> GET](#1)
   - [<b>Decrição:</b> Descreve se o Pokémon sofre dano ou benefício ao comer a fruta com base na sua espécie. ](#2)
@@ -53,7 +53,7 @@ public class InformacoesGerais{
 <details open="ContestType"> 
 <summary><b>CONTEST TIPE:</summary></b>
 
-  1. ContestType
+  1. Contest Type
   - [<b>Identificação:</b> contest-type](#identificação)
   - [<b>Tipo:</b> GET](#1)
   - [<b>Decrição:</b> São categorias em que as condições do Pokémon é avaliado nos concursos. ](#2)
@@ -63,12 +63,33 @@ public class InformacoesGerais{
   - [<b>Tipo:</b> GET](#1)
   - [<b>Decrição:</b> Efeitos de movimentos usados em competições. ](#2)
   
-    3. Super Contest Effects 
+   3. Super Contest Effect
   - [<b>Identificação:</b> super-contest-effect](#identificação)
   - [<b>Tipo:</b> GET](#1)
   - [<b>Decrição:</b> Efeitos de movimentos usados em super competições. ](#2)
 
 </details>
+
+<details open="Encounters">
+ <summary><b>ENCOUNTERS:</summary></b>
+  
+   1. Encounter Methods
+   - [<b>Identificação:</b> encounter-method ](#identificação)
+  - [<b>Tipo:</b> GET](#1)
+  - [<b>Decrição:</b> Métodos pelos quais o jogador pode encontrar Pokémon na natureza, por exemplo, caminhar na grama alta. ](#2)
+ 
+   2. Encounter Conditions
+  - [<b>Identificação:</b> encounter-condition](#identificação)
+  - [<b>Tipo:</b> GET](#1)
+  - [<b>Decrição:</b> Condições que afetam qual pokémon pode aparecer na natureza, por exemplo, dia ou noite. ](#2)
+  
+   3. Encounter Condition Values
+  - [<b>Identificação:</b> encounter-condition-value](#identificação)
+  - [<b>Tipo:</b> GET](#1)
+  - [<b>Decrição:</b> Os valores de condição de encontro são os vários estados que uma condição de encontro pode ter, ou seja, a hora do dia pode ser dia ou noite. ](#2)
+  
+</details>
+
 
 
 
