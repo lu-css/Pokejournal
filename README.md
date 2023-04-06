@@ -67,8 +67,6 @@ public class InformacoesGerais{
   - [<b>Tipo:</b> GET](#1)
   - [<b>Decrição:</b> Pokeathlon Stats são atributos diferentes do desempenho de um Pokémon em Pokéathlons. Nos Pokéathlons, as competições acontecem em diferentes percursos; um para cada uma das diferentes estatísticas do Pokéathlon.](#2)
  
-    
-
 8. Pokémon  
   - [<b>Identificação:</b> pokemon](#identificação)
   - [<b>Tipo:</b> GET](#1)
