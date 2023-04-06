@@ -20,6 +20,16 @@ public class InformacoesGerais{
 
 
 <h1>Principais Métodos:</h1>
+
+<details>
+  <summary>Berry:</summary>
+
+1. Berries:
+  - Tipo - Get
+  - Decrição - Retorna as frutas existentes no mundo de Pokémon
+   
+</details>
+
 |  Nome | Identificação | Tipo |           Descrição           |
 |:-----:|:-------------:|:----:|:-----------------------------:|
 |Pokémon|    pokemon    |  GET | Mostra as informacões gerais do pokémon.<br>Provavelmente o principal método do projeto, já que uma Pokédex<br>precisa das informações gerais acima de tudo|
@@ -27,7 +37,5 @@ public class InformacoesGerais{
 |BerryFirmnesses|berry-firmness| GET | Diz a consistência que a frutinha tem|
 | BerryFlavors | berry-flavor| GET | Descreve se o Pokémon sofre dano ou benefício ao comer a fruta com base na sua espécie| 
 |Contest Types| contest-type| GET | Os tipos de concurso são categorias que os juízes usam para avaliar a condição de um Pokémon em concursos de Pokémon|
-
-
 
 *Atributos:*
