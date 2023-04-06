@@ -1,6 +1,6 @@
 # Pesquisa sobre: PokéAPI
 ### 3°A Etim - Desenvolvimento de Sistemas
-> Débora Liberato Ribeiro <br>
+> Débora Liberato Ribeiro ╰(*°▽°*)╯<br>
 > Pedro Luís Anghievisck ( •_•)>⌐■-■
 
 Editor de Texto: https://stackedit.io/app#
@@ -13,55 +13,16 @@ public class InformacoesGerais{
 }
 ```
 
-*Métodos:*
+
+<h1>Principais Métodos:</h1>
 |  Nome | Identificação | Tipo |           Descrição           |
 |:-----:|:-------------:|:----:|:-----------------------------:|
-|Berries|     berry     |  GET | Retorna as frutinhas do jogo,<br>não será usada no aplicativo  |
 |Pokémon|    pokemon    |  GET | Mostra as informacões gerais do pokémon.<br>Provavelmente o principal método do projeto, já que uma Pokédex<br>precisa das informações gerais acima de tudo|
+|Berries|     berry     |  GET | Retorna as frutinhas do jogo,<br>não será usada no aplicativo  |
+|BerryFirmnesses|berry-firmness| GET | Diz a consistência que a frutinha tem|
+| BerryFlavors | berry-flavor| GET | Descreve se o Pokémon sofre dano ou benefício ao comer a fruta com base na sua espécie| 
+|Contest Types| contest-type| GET | Os tipos de concurso são categorias que os juízes usam para avaliar a condição de um Pokémon em concursos de Pokémon|
+
+
 
 *Atributos:*
-
-Ainda não funciona devido a falta de CSS, porém irei arrumar, vou dormir agr... malz
-
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
-</style>
-<table class="tg">
-<thead>
-  <tr>
-    <th class="tg-0pky"></th>
-    <th class="tg-0pky"></th>
-    <th class="tg-0pky"></th>
-    <th class="tg-0pky"></th>
-    <th class="tg-0pky"></th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td class="tg-0pky"></td>
-    <td class="tg-0pky"></td>
-    <td class="tg-0pky"></td>
-    <td class="tg-0pky"></td>
-    <td class="tg-0pky"></td>
-  </tr>
-  <tr>
-    <td class="tg-0pky"></td>
-    <td class="tg-0pky"></td>
-    <td class="tg-0pky"></td>
-    <td class="tg-0pky"></td>
-    <td class="tg-0pky"></td>
-  </tr>
-  <tr>
-    <td class="tg-0pky"></td>
-    <td class="tg-0pky"></td>
-    <td class="tg-0pky"></td>
-    <td class="tg-0pky"></td>
-    <td class="tg-0pky"></td>
-  </tr>
-</tbody>
-</table>
