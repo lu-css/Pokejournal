@@ -93,7 +93,7 @@ public class InformacoesGerais{
 
 
 <details open="Evolution">
- <summary><b>ENCOUNTERS:</summary></b>
+ <summary><b>EVOLUTION:</summary></b>
   
   1. Evolution Chains
   - [<b>Identificação:</b> evolution-chain](#identificação)
