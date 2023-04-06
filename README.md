@@ -8,16 +8,13 @@
 > Débora Liberato Ribeiro ╰(*°▽°*)╯<br>
 > Pedro Luís Anghievisck ( •_•)>⌐■-■
 
-Editor de Texto: https://stackedit.io/app#
-
 ```java
-public class InformacoesGerais{
+public class InfoGeral{
   public final String Documentacao = "https://pokeapi.co/docs/v2"; 
   public final String API = "https://pokeapi.co/api/v2/";
   public final String Autenticacao = "Não tem";
 }
 ```
-
 
 <h1>Principais Métodos:</h1>
 
