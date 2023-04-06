@@ -28,6 +28,7 @@ public class InformacoesGerais{
   - [<b>Identificação:</b> pokemon](#identificação)
   - [<b>Tipo:</b> GET](#1)
   - [<b>Decrição:</b>  Mostra as informacões gerais do pokémon. Provavelmente o principal método do projeto, já que uma Pokédex<br>precisa das informações gerais acima de tudo](#2)
+  - [<b>Parametros:</b> _name_ ou _id_](#3)
 
 </details>
 
