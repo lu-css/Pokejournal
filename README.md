@@ -1,7 +1,7 @@
 # Pesquisa sobre: PokéAPI
 
 <div align="center">
-<img src="img/Pokemon.png" height="530px">
+<img src="img/Pokemon.png" height="250px">
 </div>
 
 ### 3°A Etim - Desenvolvimento de Sistemas
