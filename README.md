@@ -19,7 +19,7 @@ public class InfoGeral{
 # <div align="center">_Principais Métodos:_</div>
 
 <details open="pokemon">
-  <summary><b>POKÉMON:</summary></b>
+  <summary><b>POKÉMON: SERÁ A UTILIZADA</summary></b>
   
   
  1. Abilities  
@@ -66,7 +66,7 @@ public class InfoGeral{
  8. Pokémon  
   - [<b>Identificação:</b> pokemon](#identificação)
   - [<b>Tipo:</b> GET](#1)
-  - [<b>Decrição:</b>  Mostra as informacões gerais do pokémon. Provavelmente o principal método do projeto, já que uma Pokédex<br>precisa das informações gerais acima de tudo](#2)
+  - [<b>Decrição:</b>  Mostra as informacões gerais do pokémon. Provavelmente o principal método do projeto, já que uma Pokédex<br>precisa das informações gerais acima de tudo, SERÁ A UTILIZADA](#2)
   - [<b>Parametros:</b> _name_ ou _id_](#3)
     
  9. Pokemon Location Areas  
