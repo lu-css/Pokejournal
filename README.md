@@ -136,7 +136,7 @@ public class InfoGeral{
 </details>
 
 <details open="ContestType"> 
-<summary><b>CONTEST TIPE:</summary></b>
+<summary><b>CONTEST TYPE:</summary></b>
 
   1. Contest Type
   - [<b>Identificação:</b> contest-type](#identificação)
