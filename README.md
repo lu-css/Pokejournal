@@ -331,9 +331,12 @@ public class InfoGeral{
 |       Foto (Pokémon)      |          sprites         |                                  Mostra um conjunto de "sprites" usados para representar este Pokémon no jogo.                                  |   list  |
 |     Espécie (Pokémon)     |          species         |                                                    Exibe a espécie a qual o Pokémon pertence.                                                   |   list  |
 |      Status (Pokémon)     |           stats          |                                                Recupera uma lista dos status base desse Pokémon.                                                |   list  |
-|     Tipagem (Pokémon)     |           types          |                                           Mostra uma detalhada lista contendo a tipagem desse Pokémon.                                          |   list  |
+|     Tipagem (Pokémon)     |           types          |                                           Mostra uma detalhada lista contendo a tipagem desse Pokémon.              
+|   list  |
+--------------------------------------------------------------------------------------------
 
-============================================================================================
+<h1>Protótipo e mapa de navegação</h1>
+
 <h1>Descrição detalhada da Aplicação Pokémon</h1>
 
 <p>Nosso aplicativo utilizará apenas o método Pokémon que é um método geral da classe de métodos Pokémon. A função dele é mostrar as informações gerais do Pokémon sendo essencial para nossa Pokédex pois retorna tudo que é necessário como os atributos de tipagem e fraqueza.</p>
