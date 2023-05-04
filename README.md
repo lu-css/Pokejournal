@@ -332,3 +332,29 @@ public class InfoGeral{
 |     Espécie (Pokémon)     |          species         |                                                    Exibe a espécie a qual o Pokémon pertence.                                                   |   list  |
 |      Status (Pokémon)     |           stats          |                                                Recupera uma lista dos status base desse Pokémon.                                                |   list  |
 |     Tipagem (Pokémon)     |           types          |                                           Mostra uma detalhada lista contendo a tipagem desse Pokémon.                                          |   list  |
+
+=======================================================================================================================================================================
+<h1>Descrição detalhada da Aplicação Pokémon</h1>
+
+Nosso aplicativo utilizará apenas o método Pokémon que é um método geral da classe de métodos Pokémon. A função dele é mostrar as informações gerais do Pokémon sendo essencial para nossa Pokédex pois retorna tudo que é necessário como os atributos de tipagem e fraqueza. 
+Temos a tela de carregamento que é uma “Splash Screen” onde já existe familiaridade no desenvolvimento. Pulamos então para a próxima Activity (janela) que se iniciará logo após o carregamento, os Pokémons que aparecerão na página principal serão os da primeira geração composta por 151, contudo nessa distribuição de Pokémons a evolução de uma mesma espécie será ocultada podendo ser acessada na página de detalhamento do respectivo Pokémon, tornando assim os dados mais diversificados. Nesta tela existirá ainda, a possibilidade de pesquisar de uma forma mais rápida determinado Pokémon, com uma barra de pesquisa onde o usuário poderá informar o nome ou o número registrado na Pokédex. Claro que se não for encontrado um erro retornará como resposta “Pokémon não encontrado”.
+Como teremos dados já carregados na tela inicial, vamos ter a necessidade de conectar com o banco de dados que trará tais informações na nossa aplicação. Existe ainda na primeira tela a possibilidade de filtrar os Pokémons pelos atributos assim tornando mais fácil a busca do usuário. 
+A outra tela é a de dados do Pokémon, onde após o usuário clicar em algum da tela inicial ou procurando (pela barra de pesquisa ou filtro), obterá as informações variadas sobre aquele Pokémon, assim como também a possibilidade de acessar suas outras formas de evolução, todos esses dados estão dentro da API, apenas vamos ter o trabalho de design e de a implementar. Planejamos criar uma opção onde o usuário favorita o Pokémon, baixando toda a linha evolutiva. Para isto utilizaremos uma condição em que analisaremos a quantidade de Pokémons diferentes que vamos receber e os dados serão direcionados para a respectiva tabela já criada no banco de dados.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
