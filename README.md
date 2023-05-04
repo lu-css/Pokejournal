@@ -341,4 +341,4 @@ Nosso aplicativo utilizará apenas o método Pokémon que é um método geral da
 <img src="img/Prototipo.png">
 
 # Mapa de Navegação
-<img src="img/MapaDeNavegacao.png">
+<img src="img/MapaDeNavegacao.jpeg">
