@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PokeJournal</string>
+    <string name="lbl_Nome">Pokédex</string>
+    <string name="desc">Procure pelo nome do pokémon ou pelo número nacional de registro da Pokédex</string>
 </resources>
