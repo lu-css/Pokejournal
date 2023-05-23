@@ -342,3 +342,9 @@ Nosso aplicativo utilizará apenas o método Pokémon que é um método geral da
 
 # Mapa de Navegação
 <img src="img/MapaDeNavegacao.jpeg">
+
+# Diagrama de Classe
+<img src="img/DiagramaDeClasse.png">
+
+# Diagrama do Banco de Dados
+<img src="img/DiagramaBanco.png">
