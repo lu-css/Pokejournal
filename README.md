@@ -6,7 +6,7 @@
 
 ### 3°A Etim - Desenvolvimento de Sistemas
 > Débora Liberato Ribeiro ╰(*°▽°*)╯<br>
-> Pedro Luís Anghievisck ( •_•)>⌐■-■
+> Pedro Luís Anghievisck
 
 ```java
 public class InfoGeral{
