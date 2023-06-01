@@ -21,12 +21,14 @@ public class PokemonUtil {
         ArrayList<String> evolutions = getEvolutions(evoChain);
 
         int i = 0;
+        ArrayList<JSONObject> chainArtworks = new ArrayList<JSONObject>();
         while(evolutions.get(i) != null){
-
+            JSONObject evoArtworks = getArtworks(PokeURL + PokeEndPoint + evolutions.get(i));
+            chainArtworks.add(evoArtworks);
             i++;
         }
 
-        Pokemon pokemon = new Pokemon();
+        Pokemon pokemon = new Pokemon(evolutions.get(0), pokeEntry, pokeArtworks);
         return pokemon;
     }
 

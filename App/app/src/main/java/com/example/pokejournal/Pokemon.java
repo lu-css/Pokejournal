@@ -10,9 +10,12 @@ public class Pokemon {
     public ArrayList<String> types;
     public ArrayList<String> evolutionChain;
 
-    public Pokemon(String pokeName, String pokedexEntry){
+    public JSONObject pokeArtworks;
+
+    public Pokemon(String pokeName, String pokedexEntry, JSONObject pokeArtworks){
         this.pokeName = pokeName;
         this.pokedexEntry = pokedexEntry;
+        this.pokeArtworks = pokeArtworks;
         evolutionChain = new ArrayList<String>();
         types = new ArrayList<String>();
     }
