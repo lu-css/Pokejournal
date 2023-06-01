@@ -6,15 +6,13 @@ import java.util.ArrayList;
 
 public class Pokemon {
     public String pokeName;
-    public int weight;
-    public int height;
+    public String pokedexEntry;
     public ArrayList<String> types;
     public ArrayList<String> evolutionChain;
 
-    public Pokemon(String pokeName, int weight, int height){
+    public Pokemon(String pokeName, String pokedexEntry){
         this.pokeName = pokeName;
-        this.weight = weight;
-        this.height = height;
+        this.pokedexEntry = pokedexEntry;
         evolutionChain = new ArrayList<String>();
         types = new ArrayList<String>();
     }

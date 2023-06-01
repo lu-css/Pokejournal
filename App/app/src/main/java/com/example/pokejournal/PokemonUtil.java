@@ -11,17 +11,36 @@ public class PokemonUtil {
     private static final String PokeEndPoint = "pokemon/";
     public static Pokemon getPokemon(String pokeQuery) throws IOException, Exception {
         JSONObject pokeResponse = PokeRequest.get(PokeURL + PokeEndPoint + pokeQuery);
+        JSONObject pokeArtworks = getArtworks(PokeURL + PokeEndPoint + pokeQuery);
+
         String pokeSpeciesURL = pokeResponse.getJSONObject("species").getString("url");
 
         JSONObject evoChain = getEvoChain(pokeSpeciesURL);
+        String pokeEntry = getEntry(pokeSpeciesURL);
 
         ArrayList<String> evolutions = getEvolutions(evoChain);
 
+        int i = 0;
+        while(evolutions.get(i) != null){
+
+            i++;
+        }
 
         Pokemon pokemon = new Pokemon();
         return pokemon;
     }
 
+    private static String getEntry(String pokeURL) throws IOException, Exception{
+        JSONObject species = PokeRequest.get(pokeURL);
+        String pokeEntry = species.getJSONArray("flavor_text_entries").getJSONObject(0).getString("flavor_text");
+        return pokeEntry;
+    }
+
+    private static JSONObject getArtworks(String pokeURL) throws IOException, Exception{
+        JSONObject pokeResponse = PokeRequest.get(pokeURL);
+        JSONObject pokeArtworks = pokeResponse.getJSONObject("sprites").getJSONObject("other").getJSONObject("official-artwork");
+        return pokeArtworks;
+    }
     private static JSONObject getEvoChain(String pokeURL) throws IOException, Exception{
         JSONObject pokeSpeciesResponse = PokeRequest.get(pokeURL);
         String pokeEvoChainURL = pokeSpeciesResponse.getJSONObject("evolution_chain").getString("url");
@@ -37,14 +56,13 @@ public class PokemonUtil {
 
         JSONArray evolvesTo = chain.getJSONArray("evolves_to");
 
-        if(evolvesTo != null) {
+        while(evolvesTo != null) {
             JSONObject evolves = evolvesTo.getJSONObject(0);
             JSONObject species = evolves.getJSONObject("species");
 
             String name = species.getString("name");
             evolutions.add(name);
-            
-            getEvolutions(evolves);
+            evolvesTo = chain.getJSONArray("evolves_to");
         }
 
         return evolutions;
