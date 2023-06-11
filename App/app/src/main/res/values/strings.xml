@@ -1,7 +1,32 @@
 <resources>
     <string name="app_name">PokeJournal</string>
+
+    /*String de imagem*/
     <string name="imglinha">linha</string>
     <string name="imglogoPokedex">logoPokedex</string>
+
+
+    /*String de texto em ordem de aparecimento*/
     <string name="Texto_Orientação">What pokémon are you looking for?</string>
     <string name="search_elements"> His number or name...</string>
+    <string name="num1">N°0001</string>
+    <string name="Bulba">Bulbasaur</string>
+    <string name="num4">N°0004</string>
+    <string name="Charm">Charmander</string>
+    <string name="num7">N°0007</string>
+    <string name="Squirt">Squirtle</string>
+    <string name="num10">N°0010</string>
+    <string name="cart">Carterpie</string>
+    <string name="num13">N°0013</string>
+    <string name="wee">Weedle</string>
+    <string name="num16">N°0016</string>
+    <string name="pid">Pidgey</string>
+    <string name="num19">N°0019</string>
+    <string name="rat">Rattata</string>
+    <string name="num21">N°0021</string>
+    <string name="Spa">Spearow</string>
+    <string name="num23">N°0023</string>
+    <string name="ek">Ekans</string>
+    <string name="num25">N°0025</string>
+    <string name="pike">Pikachu</string>
 </resources>
