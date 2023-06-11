@@ -1,25 +1,30 @@
 package com.example.pokejournal;
-
-import static com.example.pokejournal.PokemonUtil.getPokemon;
-
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
+import android.os.Handler;
 
-import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView txtTeste;
+Handler handler;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        txtTeste = findViewById(R.id.txtTeste2);
+        handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(MainActivity.this,tela_inicial.class);
+                startActivity(intent);
+                finish();
+            }
+        }, 3000);
+
     }
-    public void pokeSearch(View view) throws IOException, Exception {
-        Pokemon teste = getPokemon("1");
-        txtTeste.setText(teste.pokeName);
-    }
+
+
 }

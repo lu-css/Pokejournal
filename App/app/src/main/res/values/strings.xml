@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">PokeJournal</string>
-    <string name="pokenome">Nenhum</string>
+    <string name="imglinha">linha</string>
+    <string name="imglogoPokedex">logoPokedex</string>
+    <string name="Texto_Orientação">What pokémon are you looking for?</string>
+    <string name="search_elements"> His number or name...</string>
 </resources>

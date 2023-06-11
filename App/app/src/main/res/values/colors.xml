@@ -2,4 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="borda">#ECECED</color>
+    <color name="titulo">#504C4C</color>
+    <color name="frasepesq">#5E646A</color>
+    <color name="fundopesq">#BECBE2</color>
+    <color name="iconpesq">#4C6FB1</color>
 </resources>
