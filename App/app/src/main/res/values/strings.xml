@@ -29,4 +29,13 @@
     <string name="ek">Ekans</string>
     <string name="num25">N°0025</string>
     <string name="pike">Pikachu</string>
+
+    /*Detalhes Bulbasaur*/
+    <string name="nameB">BULBASAUR</string>
+    <string name="numberB">Number</string>
+    <string name="nu01">01</string>
+    <string name="desc">Description</string>
+    <string name="frase_descrição">There is a plant seed on its back right from the
+        day this Pokémon is born. The seed slowly grows larger.</string>
+    <string name="evo">Evolutions</string>
 </resources>
