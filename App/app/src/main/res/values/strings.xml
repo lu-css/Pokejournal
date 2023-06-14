@@ -38,4 +38,11 @@
     <string name="frase_descrição">There is a plant seed on its back right from the
         day this Pokémon is born. The seed slowly grows larger.</string>
     <string name="evo">Evolutions</string>
+
+    /*Menu detalhes*/
+    <string name="menu_1">Início</string>
+    <string name="menu_2">Favoritos</string>
+    <string name="menu_3">Quiz</string>
+    <string name="menu">Place</string>
+
 </resources>

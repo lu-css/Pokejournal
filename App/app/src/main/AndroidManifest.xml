@@ -13,6 +13,9 @@
         android:theme="@style/webViewFullScreen"
         tools:targetApi="31">
         <activity
+            android:name=".tela_menu"
+            android:exported="false" />
+        <activity
             android:name=".t_deta_bulba"
             android:exported="false" />
         <activity
