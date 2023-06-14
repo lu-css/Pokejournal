@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".navbar">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/bnt_inicio"
+                android:layout_width="137dp"
+                android:layout_height="47dp"
+                android:layout_marginRight="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.058"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.228"
+                app:srcCompat="@drawable/retangular">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scrollbarSize="16sp"
+                    />
+
+
+
+
+            </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:id="@+id/bnt_fav"
+                android:layout_width="137dp"
+                android:layout_height="47dp"
+                app:srcCompat="@drawable/retang2"
+                tools:layout_editor_absoluteX="47dp"
+                tools:layout_editor_absoluteY="137dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="27dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="137dp"
+                android:layout_height="47dp"
+                android:layout_marginRight="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.058"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.228"
+                app:srcCompat="@drawable/retang3" />
+
+            <ImageView
+                android:id="@+id/imageView318"
+                android:layout_width="137dp"
+                android:layout_height="47dp"
+                app:srcCompat="@drawable/retang4"
+                tools:layout_editor_absoluteX="47dp"
+                tools:layout_editor_absoluteY="137dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="27dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:id="@+id/bnt_01"
+                android:layout_width="137dp"
+                android:layout_height="47dp"
+                android:layout_marginRight="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.058"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.228"
+                app:srcCompat="@drawable/retang5" />
+
+            <ImageView
+                android:id="@+id/bnt_02"
+                android:layout_width="137dp"
+                android:layout_height="47dp"
+                app:srcCompat="@drawable/retang6"
+                tools:layout_editor_absoluteX="47dp"
+                tools:layout_editor_absoluteY="137dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="27dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:id="@+id/bnt_03"
+                android:layout_width="137dp"
+                android:layout_height="47dp"
+                android:layout_marginRight="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.058"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.228"
+                app:srcCompat="@drawable/retang7" />
+
+            <ImageView
+                android:id="@+id/bnt_04"
+                android:layout_width="137dp"
+                android:layout_height="47dp"
+                app:srcCompat="@drawable/retang8"
+                tools:layout_editor_absoluteX="47dp"
+                tools:layout_editor_absoluteY="137dp" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
