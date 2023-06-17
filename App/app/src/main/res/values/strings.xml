@@ -1,4 +1,8 @@
 <resources>
+    /* Empty String */
+    <string name="empty_pokemon_name">Loading...</string>
+    <string name="empty_pokemon_entry">00</string>
+
     <string name="app_name">PokeJournal</string>
 
     /*String de imagem*/

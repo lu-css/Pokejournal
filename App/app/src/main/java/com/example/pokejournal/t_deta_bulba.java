@@ -8,7 +8,6 @@ import android.widget.ImageView;
 
 
 public class t_deta_bulba extends AppCompatActivity {
-
     private ImageView icMenu;
 
     @Override

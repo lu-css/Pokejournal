@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".t_deta_bulba">
+    tools:context=".detalhePokemonActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:contentDescription="@string/nameB"
         android:fontFamily="@font/inter_extrabold"
-        android:text="@string/nameB"
+        android:text="@string/empty_pokemon_name"
         android:textColor="@color/white"
         android:textSize="56sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -37,6 +37,7 @@
         android:id="@+id/img_menu"
         android:layout_width="54dp"
         android:layout_height="53dp"
+        android:onClick="openNav"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.044"
@@ -127,7 +128,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/inter"
-        android:text="@string/nu01"
+        android:text="@string/empty_pokemon_entry"
         android:textColor="@color/white"
         android:textSize="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -314,5 +315,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.952"
         app:srcCompat="@drawable/circle" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

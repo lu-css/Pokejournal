@@ -1,4 +1,4 @@
-package com.example.pokejournal;
+package com.example.models;
 
 import org.json.JSONObject;
 
@@ -12,6 +12,10 @@ public class Pokemon {
 
     public JSONObject pokeArtworks;
 
+    public Pokemon(){
+        this.pokeName = "";
+        this.pokedexEntry = "";
+    }
     public Pokemon(String pokeName, String pokedexEntry, JSONObject pokeArtworks){
         this.pokeName = pokeName;
         this.pokedexEntry = pokedexEntry;

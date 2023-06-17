@@ -16,23 +16,10 @@ public class navbar extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navbar);
+    }
 
-        botao_inicio = findViewById(R.id.imgInicio);
-        texto_inicio = findViewById(R.id.txt_inicio);
-        botao_inicio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent inicioIntent = new Intent(navbar.this, tela_inicial.class);
-                startActivity(inicioIntent);
-
-            }
-        });
-
-        texto_inicio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent iniciooIntent = new Intent(navbar.this, tela_inicial.class);
-            }
-        });
+    public void goTelaInicial(View v){
+        Intent intent = new Intent(navbar.this, tela_inicial.class);
+        startActivity(intent);
     }
 }
