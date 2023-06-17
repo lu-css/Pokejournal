@@ -6,16 +6,19 @@ import android.util.Log;
 import com.example.models.Pokemon;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class PokemonUtil {
     private static final String PokeURL = "https://pokeapi.co/api/v2/";
     private static final String PokeEndPoint = "pokemon/";
+    private static final String SPECIES_ENDPOINT = "pokemon-species/";
 
     public static ArrayList<Pokemon> getManyPokemon(String... pokeQueries) throws Exception{
         ArrayList<Pokemon> pokemons = new ArrayList<>();
@@ -29,8 +32,6 @@ public class PokemonUtil {
         return pokemons;
     }
     public static Optional<Pokemon> getPokemon(String pokeQuery) throws Exception {
-            Pokemon pokemon = new Pokemon();
-
             Optional<JSONObject> json = PokeRequest.getRequest(PokeURL + PokeEndPoint + pokeQuery);
 
             if (!json.isPresent()){
@@ -38,29 +39,50 @@ public class PokemonUtil {
             }
 
             JSONObject response = json.get();
-            pokemon.pokeName = response.getString("name");
-            pokemon.pokedexEntry = String.valueOf(response.getInt("id"));
 
-            return Optional.of(pokemon);
-//        JSONObject pokeArtworks = getArtworks(PokeURL + PokeEndPoint + pokeQuery);
-//
-//        String pokeSpeciesURL = pokeResponse.getJSONObject("species").getString("url");
-//
-//        JSONObject evoChain = getEvoChain(pokeSpeciesURL);
-//        String pokeEntry = getEntry(pokeSpeciesURL);
-//
-//        ArrayList<String> evolutions = getEvolutions(evoChain);
-//
-//        int i = 0;
-//        ArrayList<JSONObject> chainArtworks = new ArrayList<JSONObject>();
-//        while(evolutions.get(i) != null){
-//            JSONObject evoArtworks = getArtworks(PokeURL + PokeEndPoint + evolutions.get(i));
-//            chainArtworks.add(evoArtworks);
-//            i++;
-//        }
-//
-//        Pokemon pokemon = new Pokemon(evolutions.get(0), pokeEntry, pokeArtworks);
-//        return pokemon;
+            return Optional.of(PokemonParse.parsePokemonResponse(response));
+    }
+
+    public static boolean pokemonExists(String pokeQuery) throws Exception {
+        Optional<JSONObject> json = PokeRequest.getRequest(PokeURL + PokeEndPoint + pokeQuery);
+
+        Log.d("POKEMON_EXIST", json.toString());
+
+        if(!json.isPresent()){
+            return false;
+        }
+
+        JSONObject response = json.get();
+
+        try{
+            int id = response.getInt("id");
+            Log.d("POKEMON_EXIST", String.valueOf(id));
+            return true;
+        } catch (Exception e){
+            return false;
+        }
+    }
+    public static Optional<JSONObject> getPokemonSpecies(String pokeQuery) throws Exception {
+        return PokeRequest.getRequest(PokeURL + SPECIES_ENDPOINT + pokeQuery);
+    }
+
+    public static String getPokemonFlavorText(JSONObject species) throws JSONException {
+        JSONArray flavors = species.getJSONArray("flavor_text_entries");
+        JSONObject flavor = null;
+
+        do {
+            flavor = getRandomItemInJSONArray(flavors);
+        } while (flavor == null || !flavor.getJSONObject("language").getString("name").equals("en"));
+
+        return flavor.getString("flavor_text");
+    }
+
+    private static JSONObject getRandomItemInJSONArray(JSONArray arr) throws JSONException {
+        int length = arr.length();
+
+        int randomPos = ThreadLocalRandom.current().nextInt(0, length);
+
+        return arr.getJSONObject(randomPos);
     }
 
     public static ArrayList<Pokemon> getPokemonsByIds(int... ids) throws Exception{
@@ -68,47 +90,11 @@ public class PokemonUtil {
 
         for(int id : ids) {
             Optional<Pokemon> pokemon = getPokemon(String.valueOf(id));
+
+            // adiciona somente pokemons que existem.
             pokemon.ifPresent(pokemons::add);
         }
 
         return pokemons;
-    }
-
-    private static String getEntry(String pokeURL) throws IOException, Exception{
-        JSONObject species = PokeRequest.get(pokeURL);
-        String pokeEntry = species.getJSONArray("flavor_text_entries").getJSONObject(0).getString("flavor_text");
-        return pokeEntry;
-    }
-
-    private static JSONObject getArtworks(String pokeURL) throws IOException, Exception{
-        JSONObject pokeResponse = PokeRequest.get(pokeURL);
-        JSONObject pokeArtworks = pokeResponse.getJSONObject("sprites").getJSONObject("other").getJSONObject("official-artwork");
-        return pokeArtworks;
-    }
-    private static JSONObject getEvoChain(String pokeURL) throws IOException, Exception{
-        JSONObject pokeSpeciesResponse = PokeRequest.get(pokeURL);
-        String pokeEvoChainURL = pokeSpeciesResponse.getJSONObject("evolution_chain").getString("url");
-
-        JSONObject pokeEvoChain = PokeRequest.get(pokeEvoChainURL).getJSONObject("chain");
-        return pokeEvoChain;
-    }
-
-    private static ArrayList<String> getEvolutions(JSONObject chain) throws IOException, Exception {
-        ArrayList<String> evolutions = new ArrayList<String>();
-
-        evolutions.add(chain.getJSONObject("species").getString("name"));
-
-        JSONArray evolvesTo = chain.getJSONArray("evolves_to");
-
-        while(evolvesTo != null) {
-            JSONObject evolves = evolvesTo.getJSONObject(0);
-            JSONObject species = evolves.getJSONObject("species");
-
-            String name = species.getString("name");
-            evolutions.add(name);
-            evolvesTo = chain.getJSONArray("evolves_to");
-        }
-
-        return evolutions;
     }
 }

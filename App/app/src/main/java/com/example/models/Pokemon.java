@@ -9,8 +9,9 @@ public class Pokemon {
     public String pokedexEntry;
     public ArrayList<String> types;
     public ArrayList<String> evolutionChain;
-
     public JSONObject pokeArtworks;
+
+    public String description;
 
     public Pokemon(){
         this.pokeName = "";

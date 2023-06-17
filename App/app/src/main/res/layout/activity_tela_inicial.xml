@@ -71,6 +71,7 @@
                 android:orientation="horizontal">
 
                 <EditText
+                    android:id="@+id/seachbar"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
                     android:layout_weight="1"
@@ -89,6 +90,7 @@
                     android:layout_height="48dp"
                     android:background="@drawable/search_icon_background"
                     android:contentDescription="@string/app_name"
+                    android:onClick="startSearch"
                     android:padding="9dp"
                     android:src="@drawable/ic_search" />
 

@@ -63,9 +63,11 @@ public class detalhePokemonActivity extends AppCompatActivity implements LoaderM
 
         TextView txt_pokemonName = findViewById(R.id.txt_pokemonName);
         TextView txt_pokemonId = findViewById(R.id.txt_pokemonId);
+        TextView txt_pokemonDescription = findViewById(R.id.pokemon_description);
 
         txt_pokemonId.setText(data.pokemon.pokedexEntry);
         txt_pokemonName.setText(data.pokemon.pokeName);
+        txt_pokemonDescription.setText(data.pokemon.description);
     }
 
     @Override
