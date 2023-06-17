@@ -24,6 +24,7 @@ import androidx.loader.content.Loader;
 
 import com.example.models.Pokemon;
 import com.example.requests.PokemonUtil;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ import java.util.concurrent.ExecutionException;
 public class tela_inicial extends AppCompatActivity implements LoaderManager.LoaderCallbacks<TelaInicialModel> {
 
     private ImageView img_bulbB;
-    private ArrayList<Pokemon> pokemonCards = new ArrayList<>();
+    private final ArrayList<Pokemon> pokemonCards = new ArrayList<>();
     private ArrayAdapter<Pokemon> adapter;
     public static String INTENT_POKEMON_ID;
     private EditText edit_searchBar;
@@ -59,9 +60,11 @@ public class tela_inicial extends AppCompatActivity implements LoaderManager.Loa
 
                 TextView txt_pokemonName = convertView.findViewById(R.id.pokemon_name);
                 TextView txt_pokemonNumber = convertView.findViewById(R.id.pokemon_number);
+                ImageView img_pokemon = convertView.findViewById(R.id.img_pokemon);
 
                 txt_pokemonName.setText(pokemon.pokeName);
                 txt_pokemonNumber.setText(pokemon.pokedexEntry);
+                Picasso.get().load(pokemon.imageSpriteUrl).into(img_pokemon);
 
                 convertView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -98,10 +101,10 @@ public class tela_inicial extends AppCompatActivity implements LoaderManager.Loa
     }
 
     private void goToPokemonDescriptionActivity(String pokedexEntry){
-                                                                        Intent intent = new Intent(this, detalhePokemonActivity.class);
-                                                                        intent.putExtra(INTENT_POKEMON_ID, pokedexEntry);
-                                                                        startActivity(intent);
-                                                                        }
+        Intent intent = new Intent(this, detalhePokemonActivity.class);
+        intent.putExtra(INTENT_POKEMON_ID, pokedexEntry);
+        startActivity(intent);
+    }
 
     private void addPokemonCard(Pokemon pokemon){
         pokemonCards.add(pokemon);
@@ -157,7 +160,7 @@ public class tela_inicial extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onLoadFinished(@NonNull Loader<TelaInicialModel> loader, TelaInicialModel data) {
         if(!data.searchedPokemon.isEmpty()){
-            Toast.makeText(this, "POKEMON EXISTS!" + String.valueOf(data.searchedPokemon),Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "POKEMON EXISTS!" + data.searchedPokemon,Toast.LENGTH_SHORT).show();
             goToPokemonDescriptionActivity(String.valueOf(data.searchedPokemon));
             return;
         }
@@ -231,7 +234,7 @@ class TelaInicialLoader extends AsyncTaskLoader<TelaInicialModel> {
 
 class SearchLoader extends AsyncTaskLoader<TelaInicialModel> {
     private Bundle args;
-    private String pokemon_id;
+    private final String pokemon_id;
 
     public SearchLoader(@NonNull Context context, Bundle args) {
         super(context);

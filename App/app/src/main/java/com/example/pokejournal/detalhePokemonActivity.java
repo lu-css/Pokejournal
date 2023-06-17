@@ -13,17 +13,18 @@ import android.graphics.Path;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.models.Pokemon;
 import com.example.requests.PokemonUtil;
+import com.squareup.picasso.Picasso;
 
 import java.util.Optional;
 
 public class detalhePokemonActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Model>{
     private String pokemonId = "";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +65,8 @@ public class detalhePokemonActivity extends AppCompatActivity implements LoaderM
         TextView txt_pokemonName = findViewById(R.id.txt_pokemonName);
         TextView txt_pokemonId = findViewById(R.id.txt_pokemonId);
         TextView txt_pokemonDescription = findViewById(R.id.pokemon_description);
+        ImageView img_pokemon = findViewById(R.id.img_descpokemon);
+        Picasso.get().load(data.pokemon.imageSpriteUrl).into(img_pokemon);
 
         txt_pokemonId.setText(data.pokemon.pokedexEntry);
         txt_pokemonName.setText(data.pokemon.pokeName);

@@ -12,6 +12,7 @@ public class Pokemon {
     public JSONObject pokeArtworks;
 
     public String description;
+    public String imageSpriteUrl;
 
     public Pokemon(){
         this.pokeName = "";

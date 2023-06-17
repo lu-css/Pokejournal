@@ -15,6 +15,7 @@ public class PokemonParse {
 
         pokemon.pokeName = json.getString("name");
         pokemon.pokedexEntry = pokedexEntry;
+        pokemon.imageSpriteUrl = json.getJSONObject("sprites").getString("front_default");
 
         // Gets the Species response.
         Optional<JSONObject> opSpecies = PokemonUtil.getPokemonSpecies(pokedexEntry);

@@ -93,7 +93,7 @@
         app:srcCompat="@drawable/ic_favoritar" />
 
     <ImageView
-        android:id="@+id/imageView16"
+        android:id="@+id/img_descpokemon"
         android:layout_width="257dp"
         android:layout_height="187dp"
         app:layout_constraintBottom_toBottomOf="parent"
