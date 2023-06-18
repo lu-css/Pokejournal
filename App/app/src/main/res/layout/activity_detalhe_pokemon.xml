@@ -7,16 +7,32 @@
     tools:context=".detalhePokemonActivity">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="476dp"
-        android:layout_height="420dp"
-        android:layout_marginBottom="4dp"
+        android:id="@+id/background_pokemon_circle"
+        android:layout_width="500dp"
+        android:layout_height="500dp"
+        android:layout_marginTop="-150dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/imageView15"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/fundobulb" />
+        app:layout_constraintVertical_bias="-3.0"
+        app:srcCompat="@drawable/pokemon_background_circle" />
 
+    <ImageView
+        android:id="@+id/background_pokemon_circle_back"
+        android:layout_width="500dp"
+        android:layout_height="500dp"
+        android:layout_marginTop="-150dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/imageView15"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="2.0"
+        app:srcCompat="@drawable/pokemon_background_circle" />
     <TextView
         android:id="@+id/txt_pokemonName"
         android:layout_width="wrap_content"

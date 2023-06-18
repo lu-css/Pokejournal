@@ -22,6 +22,7 @@ import androidx.loader.app.LoaderManager;
 import androidx.loader.content.AsyncTaskLoader;
 import androidx.loader.content.Loader;
 
+import com.example.helpers.ActivityHelper;
 import com.example.models.Pokemon;
 import com.example.requests.PokemonUtil;
 import com.squareup.picasso.Picasso;
@@ -36,7 +37,6 @@ public class tela_inicial extends AppCompatActivity implements LoaderManager.Loa
     private ImageView img_bulbB;
     private final ArrayList<Pokemon> pokemonCards = new ArrayList<>();
     private ArrayAdapter<Pokemon> adapter;
-    public static String INTENT_POKEMON_ID;
     private EditText edit_searchBar;
     private final int LIST_POKEMON_LOADER = 0;
     private final int SEARCH_POKEMON_LOADER = 1;
@@ -61,10 +61,30 @@ public class tela_inicial extends AppCompatActivity implements LoaderManager.Loa
                 TextView txt_pokemonName = convertView.findViewById(R.id.pokemon_name);
                 TextView txt_pokemonNumber = convertView.findViewById(R.id.pokemon_number);
                 ImageView img_pokemon = convertView.findViewById(R.id.img_pokemon);
+                ImageView img_pokemonType1 = convertView.findViewById(R.id.pokemon_type_1);
+                ImageView img_pokemonType2 = convertView.findViewById(R.id.pokemon_type_2);
 
                 txt_pokemonName.setText(pokemon.pokeName);
                 txt_pokemonNumber.setText(pokemon.pokedexEntry);
                 Picasso.get().load(pokemon.imageSpriteUrl).into(img_pokemon);
+
+                img_pokemonType1.setVisibility(View.INVISIBLE);
+                img_pokemonType2.setVisibility(View.INVISIBLE);
+
+                int t1 = ActivityHelper.getPokemonTypeImage(pokemon.types.get(0));
+                if(t1 != -1){
+                    img_pokemonType1.setImageResource(t1);
+                    img_pokemonType1.setVisibility(View.VISIBLE);
+                }
+
+                if(pokemon.types.size() > 1){
+                    int t2 = ActivityHelper.getPokemonTypeImage(pokemon.types.get(1));
+                    if(t2 != -1){
+                        img_pokemonType2.setImageResource(t2);
+                        img_pokemonType2.setVisibility(View.VISIBLE);
+                    }
+                }
+
 
                 convertView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -89,8 +109,6 @@ public class tela_inicial extends AppCompatActivity implements LoaderManager.Loa
         if(listPokemonLoader == null){
             loaderManager.initLoader(LIST_POKEMON_LOADER, query, this);
         }
-
-        Log.d("TUE é o CARALHO","b");
     }
 
     @Override
@@ -101,14 +119,7 @@ public class tela_inicial extends AppCompatActivity implements LoaderManager.Loa
     }
 
     private void goToPokemonDescriptionActivity(String pokedexEntry){
-        Intent intent = new Intent(this, detalhePokemonActivity.class);
-        intent.putExtra(INTENT_POKEMON_ID, pokedexEntry);
-        startActivity(intent);
-    }
-
-    private void addPokemonCard(Pokemon pokemon){
-        pokemonCards.add(pokemon);
-        adapter.notifyDataSetChanged();
+        startActivity(ActivityHelper.getPokemonDetailsIntent(this, pokedexEntry));
     }
 
     private void addPokemonCards(ArrayList<Pokemon> pokemons){
@@ -131,22 +142,6 @@ public class tela_inicial extends AppCompatActivity implements LoaderManager.Loa
         }
     }
 
-    private void stopLoaders(){
-        LoaderManager loaderManager = LoaderManager.getInstance(this);
-        Loader<TelaInicialModel> listPokemonLoader = loaderManager.getLoader(LIST_POKEMON_LOADER);
-        Loader<TelaInicialModel> searchPokemonLoader = loaderManager.getLoader(SEARCH_POKEMON_LOADER);
-
-        if(listPokemonLoader != null){
-            listPokemonLoader.stopLoading();
-            listPokemonLoader.cancelLoad();
-        }
-
-        if(searchPokemonLoader != null){
-            searchPokemonLoader.stopLoading();
-            searchPokemonLoader.cancelLoad();
-        }
-    }
-
     @NonNull
     @Override
     public Loader<TelaInicialModel> onCreateLoader(int id, @Nullable Bundle args) {
@@ -160,7 +155,6 @@ public class tela_inicial extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onLoadFinished(@NonNull Loader<TelaInicialModel> loader, TelaInicialModel data) {
         if(!data.searchedPokemon.isEmpty()){
-            Toast.makeText(this, "POKEMON EXISTS!" + data.searchedPokemon,Toast.LENGTH_SHORT).show();
             goToPokemonDescriptionActivity(String.valueOf(data.searchedPokemon));
             return;
         }

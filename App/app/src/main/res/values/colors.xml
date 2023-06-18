@@ -7,4 +7,15 @@
     <color name="frasepesq">#5E646A</color>
     <color name="fundopesq">#BECBE2</color>
     <color name="iconpesq">#4C6FB1</color>
+
+    <color name="pokemon_black">#FF2A2A2A</color>
+    <color name="pokemon_blue">#FF0000FF</color>
+    <color name="pokemon_brown">#FF0000ff</color>
+    <color name="pokemon_gray">#FF888888</color>
+    <color name="pokemon_green">#FF00FF00</color>
+    <color name="pokemon_pink">#FFFF8888</color>
+    <color name="pokemon_purple">#FFF006aa</color>
+    <color name="pokemon_red">#FFFF0000</color>
+    <color name="pokemon_white">#FFFFFFFF</color>
+    <color name="pokemon_yellow">#FFFFFF00</color>
 </resources>

@@ -9,19 +9,19 @@ public class Pokemon {
     public String pokedexEntry;
     public ArrayList<String> types;
     public ArrayList<String> evolutionChain;
-    public JSONObject pokeArtworks;
-
     public String description;
     public String imageSpriteUrl;
+    public String pokemonColor;
 
     public Pokemon(){
         this.pokeName = "";
         this.pokedexEntry = "";
+        evolutionChain = new ArrayList<String>();
+        types = new ArrayList<String>();
     }
     public Pokemon(String pokeName, String pokedexEntry, JSONObject pokeArtworks){
         this.pokeName = pokeName;
         this.pokedexEntry = pokedexEntry;
-        this.pokeArtworks = pokeArtworks;
         evolutionChain = new ArrayList<String>();
         types = new ArrayList<String>();
     }
