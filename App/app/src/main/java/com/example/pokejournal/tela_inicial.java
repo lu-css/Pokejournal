@@ -220,7 +220,7 @@ class TelaInicialLoader extends AsyncTaskLoader<TelaInicialModel> {
     @Override
     public TelaInicialModel loadInBackground() {
         try{
-            ArrayList<Pokemon> pokemons = PokemonUtil.getManyPokemon("ditto", "magikarp", "ninguem", "pichu");
+            ArrayList<Pokemon> pokemons = PokemonUtil.getManyPokemon("haunter", "pikachu", "mew", "rapidash", "ninetailes", "sylveon", "dragonair");
 
             return new TelaInicialModel(pokemons);
         }
