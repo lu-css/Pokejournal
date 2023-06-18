@@ -79,7 +79,6 @@ public class detalhePokemonActivity extends AppCompatActivity implements LoaderM
         TextView txt_pokemonId = findViewById(R.id.txt_pokemonId);
         TextView txt_pokemonDescription = findViewById(R.id.pokemon_description);
         ImageView img_pokemon = findViewById(R.id.img_descpokemon);
-        ImageView img_pokemonColor = findViewById(R.id.background_pokemon_circle);
 
         Picasso.get().load(data.pokemon.imageSpriteUrl).into(img_pokemon);
 
@@ -87,11 +86,6 @@ public class detalhePokemonActivity extends AppCompatActivity implements LoaderM
         txt_pokemonName.setText(data.pokemon.pokeName);
         txt_pokemonDescription.setText(data.pokemon.description);
 
-        GradientDrawable shape = (GradientDrawable) img_pokemonColor.getDrawable().mutate();
-        ((GradientDrawable) shape).setColor(Color.RED);
-//        GradientDrawable shape = (GradientDrawable) img_pokemonColor.getBackground().mutate();
-//        ((GradientDrawable) shape).setColor(Color.RED);
-        setDrawableColor(img_pokemonColor.getBackground().mutate(), ActivityHelper.getPokemonColor(data.pokemon.pokemonColor));
 
         for(int i = 0; i< data.pokemon.evolutionChain.size(); i++){
             String evo = data.pokemon.evolutionChain.get(i);
@@ -99,30 +93,6 @@ public class detalhePokemonActivity extends AppCompatActivity implements LoaderM
         }
     }
 
-    private void setDrawableColor(Drawable drawable, int color){
-        if(drawable instanceof ShapeDrawable){
-            ShapeDrawable shape = (ShapeDrawable) drawable;
-            shape.getPaint().setColor(ContextCompat.getColor(this, color));
-            return;
-        }
-
-        if(drawable instanceof GradientDrawable){
-            GradientDrawable shape = (GradientDrawable) drawable;
-            shape.setColor(ContextCompat.getColor(this, color));
-            return;
-        }
-
-        if(drawable instanceof ColorDrawable){
-            ColorDrawable shape = (ColorDrawable) drawable;
-            shape.setColor(ContextCompat.getColor(this, color));
-            return;
-        }
-
-
-
-        Toast.makeText(this, "NADA", Toast.LENGTH_SHORT).show();
-
-    }
 
     @Override
     public void onLoaderReset(@NonNull Loader<Model> loader) { }
