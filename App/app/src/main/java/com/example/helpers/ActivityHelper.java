@@ -51,41 +51,41 @@ public class ActivityHelper {
                 return R.drawable.dark;
         }
 
-        return -1;
+        return R.drawable.dark;
     }
 
     public static int getPokemonColor(String color){
         Log.d("POKEMON_COLOR", color);
         switch (color){
             case ("blue"):
-                return R.color.pokemon_blue;
+                return R.drawable.fundo_azul;
 
             case ("brown"):
-                return R.color.pokemon_brown;
+                return R.drawable.fundo_marrom;
 
             case ("gray"):
-                return R.color.pokemon_gray;
+                return R.drawable.fundo_cinza;
 
             case ("green"):
-                return R.color.pokemon_green;
+                return R.drawable.fundo_verde;
 
             case ("pink"):
-                return R.color.pokemon_pink;
+                return R.drawable.fundo_rosa;
 
             case ("purple"):
-                return R.color.pokemon_purple;
+                return R.drawable.fundo_roxo;
 
             case ("red"):
-                return R.color.pokemon_red;
+                return R.drawable.fundo_vermelho;
 
             case ("white"):
-                return R.color.pokemon_white;
+                return R.drawable.fundo_marrom;
 
             case ("yellow"):
-                return R.color.pokemon_blue;
+                return R.drawable.fundo_amarelo;
         }
 
-        return R.color.pokemon_black;
+        return R.drawable.fundo_preto;
     }
 
     public static Intent getPokemonDetailsIntent(Context context, String pokedexEntry){

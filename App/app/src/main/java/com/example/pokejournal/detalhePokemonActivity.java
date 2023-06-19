@@ -79,17 +79,34 @@ public class detalhePokemonActivity extends AppCompatActivity implements LoaderM
         TextView txt_pokemonId = findViewById(R.id.txt_pokemonId);
         TextView txt_pokemonDescription = findViewById(R.id.pokemon_description);
         ImageView img_pokemon = findViewById(R.id.img_descpokemon);
+        ImageView img_fundoPokemon = findViewById(R.id.fundo_pokemon);
+
+        ImageView img_EvoChain1 = findViewById(R.id.evo_chain_1);
+        ImageView img_EvoChain2 = findViewById(R.id.evo_chain_2);
+        ImageView img_EvoChain3 = findViewById(R.id.evo_chain_3);
 
         Picasso.get().load(data.pokemon.imageSpriteUrl).into(img_pokemon);
 
         txt_pokemonId.setText(data.pokemon.pokedexEntry);
         txt_pokemonName.setText(data.pokemon.pokeName);
         txt_pokemonDescription.setText(data.pokemon.description);
+        img_fundoPokemon.setImageResource(ActivityHelper.getPokemonColor(data.pokemon.pokemonColor));
 
+        int evolutionsLength = data.pokemon.evolutionChain.size();
 
-        for(int i = 0; i< data.pokemon.evolutionChain.size(); i++){
-            String evo = data.pokemon.evolutionChain.get(i);
-            Toast.makeText(this, evo, Toast.LENGTH_SHORT).show();
+        if(evolutionsLength >= 1){
+            String evo = data.pokemon.evolutionChain.get(0);
+            Picasso.get().load(evo).into(img_EvoChain1);
+        }
+
+        if(evolutionsLength >= 2){
+            String evo = data.pokemon.evolutionChain.get(1);
+            Picasso.get().load(evo).into(img_EvoChain2);
+        }
+
+        if(evolutionsLength >= 3){
+            String evo = data.pokemon.evolutionChain.get(2);
+            Picasso.get().load(evo).into(img_EvoChain3);
         }
     }
 
