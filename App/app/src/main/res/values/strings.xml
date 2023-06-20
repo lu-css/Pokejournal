@@ -50,4 +50,6 @@
     <string name="menu">Place</string>
     <string name="favo">Favoritar</string>
 
+    <string name="quiztitle">PokéQuiz</string>
+
 </resources>

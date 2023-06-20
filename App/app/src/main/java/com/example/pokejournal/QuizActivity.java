@@ -29,6 +29,8 @@ public class QuizActivity extends AppCompatActivity  implements LoaderManager.Lo
     private EditText txt_pokemon;
     private String pokemonName;
 
+    private ImageView img_menu2;
+
     private Bitmap originalBitmap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
