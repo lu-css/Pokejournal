@@ -22,4 +22,9 @@ public class navbar extends AppCompatActivity {
         Intent intent = new Intent(navbar.this, tela_inicial.class);
         startActivity(intent);
     }
+
+    public void goQuiz(View v){
+        Intent intent = new Intent(navbar.this, QuizActivity.class);
+        startActivity(intent);
+    }
 }

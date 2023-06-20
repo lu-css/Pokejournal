@@ -12,12 +12,15 @@
         android:layout_columnWeight="1"
         android:layout_margin="12dp"
         app:cardCornerRadius="16dp"
-        app:cardElevation="4dp"
         tools:ignore="MissingConstraints">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="116dp"
+            android:layout_height="199dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="12dp"
             android:gravity="center"
             android:orientation="vertical"
             android:padding="16dp">
@@ -51,14 +54,15 @@
                 android:id="@+id/pokemon_type_1"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginLeft="-20dp"
+                android:layout_marginLeft="-13dp"
+                android:layout_marginTop="10dp"
                 android:src="@drawable/planta" />
 
             <ImageView
                 android:id="@+id/pokemon_type_2"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginLeft="4dp"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="-20dp"
                 android:src="@drawable/venenoso" />
 

@@ -48,5 +48,6 @@
     <string name="menu_2">Favoritos</string>
     <string name="menu_3">Quiz</string>
     <string name="menu">Place</string>
+    <string name="favo">Favoritar</string>
 
 </resources>
