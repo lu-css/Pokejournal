@@ -21,7 +21,7 @@
         app:srcCompat="@drawable/retangular" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/fundo_fav"
         android:layout_width="137dp"
         android:layout_height="47dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -144,19 +144,19 @@
         app:layout_constraintTop_toTopOf="@+id/imgInicio" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/txtfavorito"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/inter_extrabold"
+        android:onClick="goQuiz"
         android:text="@string/menu_2"
         android:textColor="@color/white"
-        android:onClick="goQuiz"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintBottom_toBottomOf="@+id/fundo_fav"
+        app:layout_constraintEnd_toEndOf="@+id/fundo_fav"
         app:layout_constraintHorizontal_bias="0.112"
-        app:layout_constraintStart_toStartOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="@+id/imageView3" />
+        app:layout_constraintStart_toStartOf="@+id/fundo_fav"
+        app:layout_constraintTop_toTopOf="@+id/fundo_fav" />
 
     <TextView
         android:id="@+id/textView3"
@@ -364,14 +364,14 @@
         app:srcCompat="@drawable/ic_snorlax" />
 
     <ImageView
-        android:id="@+id/imageView49"
+        android:id="@+id/img_ball"
         android:layout_width="42dp"
         android:layout_height="46dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintBottom_toBottomOf="@+id/fundo_fav"
+        app:layout_constraintEnd_toEndOf="@+id/fundo_fav"
         app:layout_constraintHorizontal_bias="0.989"
-        app:layout_constraintStart_toStartOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="@+id/imageView3"
+        app:layout_constraintStart_toStartOf="@+id/fundo_fav"
+        app:layout_constraintTop_toTopOf="@+id/fundo_fav"
         app:layout_constraintVertical_bias="0.142"
         app:srcCompat="@drawable/ic_pokebola" />
 
