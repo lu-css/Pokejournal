@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class PokemonParse {
 
-    public static Pokemon parsePokemonResponse(JSONObject json) throws Exception {
+    public static Pokemon parsePokemonCardInfos(JSONObject json) throws Exception{
         Pokemon pokemon = new Pokemon();
         String pokedexEntry = String.valueOf(json.getInt("id"));
 
@@ -21,6 +21,12 @@ public class PokemonParse {
         pokemon.imageSpriteUrl = json.getJSONObject("sprites").getJSONObject("other").getJSONObject("official-artwork").getString("front_default");
         pokemon.types = getTypes(json);
 
+        return pokemon;
+    }
+
+    public static Pokemon parseFullPokemon(JSONObject json) throws Exception{
+        Pokemon pokemon = parsePokemonCardInfos(json);
+        String pokedexEntry = String.valueOf(json.getInt("id"));
 
         // Gets the Species response.
         JSONObject species = getSpecies(pokedexEntry);
@@ -65,22 +71,22 @@ public class PokemonParse {
         return evolutionChain.get();
     }
 
-    private static Optional<String> getPokemonChainName(JSONObject chain){
+    private static Optional<Pokemon> getPokemonInChain(JSONObject chain){
         try{
             String pokemonName = chain.getJSONObject("species").getString("name");
-            return Optional.of(pokemonName);
+            return Optional.of(PokemonUtil.getPokemonCard(pokemonName));
         } catch (Exception e){
             return Optional.empty();
         }
     }
 
-    private static ArrayList<String> getAllEvolutions(JSONObject evolutionChain) throws Exception{
-        ArrayList<String> allEvolutions = new ArrayList<>();
+    private static ArrayList<Pokemon> getAllEvolutions(JSONObject evolutionChain) throws Exception{
+        ArrayList<Pokemon> allEvolutions = new ArrayList<>();
 
         JSONObject chain = evolutionChain.getJSONObject("chain");
 
-        Optional<String> pokeName = getPokemonChainName(chain);
-        pokeName.ifPresent(allEvolutions::add);
+        Optional<Pokemon> pokemon = getPokemonInChain(chain);
+        pokemon.ifPresent(allEvolutions::add);
 
         while (true){
             JSONArray evolvesTo = chain.getJSONArray("evolves_to");
@@ -91,10 +97,8 @@ public class PokemonParse {
 
             chain = evolvesTo.getJSONObject(0);
 
-            pokeName = getPokemonChainName(chain);
-            pokeName.ifPresent(allEvolutions::add);
+            pokemon = getPokemonInChain(chain);
+            pokemon.ifPresent(allEvolutions::add);
         }
     }
-
-
 }

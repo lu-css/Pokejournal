@@ -1,6 +1,5 @@
 package com.example.requests;
 
-import android.net.Uri;
 import android.util.Log;
 
 import com.example.models.Pokemon;
@@ -9,8 +8,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
@@ -19,33 +16,53 @@ public class PokemonUtil {
     private static final String PokeURL = "https://pokeapi.co/api/v2/";
     private static final String PokeEndPoint = "pokemon/";
     private static final String SPECIES_ENDPOINT = "pokemon-species/";
-    private static final String EVOLUTION_CHAIN_ENDPOINT = "evolution-chain/";
+
+    public static ArrayList<Pokemon> getManyPokemonCards(String... pokeQueries){
+        ArrayList<Pokemon> pokemons = new ArrayList<>();
+
+        for(String pokeQuery : pokeQueries){
+            try{
+                Pokemon pokemon = getPokemonCard(pokeQuery);
+                pokemons.add(pokemon);
+            } catch (Exception ignored){}
+        }
+
+        return pokemons;
+    }
 
     public static ArrayList<Pokemon> getManyPokemon(String... pokeQueries) throws Exception{
         ArrayList<Pokemon> pokemons = new ArrayList<>();
 
         for(String pokeQuery : pokeQueries){
-            Optional<Pokemon> pokemon = getPokemon(pokeQuery);
-
-            pokemon.ifPresent(pokemons::add);
+            Pokemon pokemon = getPokemon(pokeQuery);
+            pokemons.add(pokemon);
         }
 
         return pokemons;
     }
-    public static Optional<Pokemon> getPokemon(String pokeQuery) throws Exception {
-            Optional<JSONObject> json = PokeRequest.getRequest(PokeURL + PokeEndPoint + pokeQuery);
+    private static JSONObject makeGetPokemonRequest(String pokeQuery) throws Exception {
+        String formatedPokeQuery = pokeQuery.toLowerCase().trim();
+        Optional<JSONObject> json = PokeRequest.getRequest(PokeURL + PokeEndPoint + formatedPokeQuery);
 
-            if (!json.isPresent()){
-                return Optional.empty();
-            }
+        if(!json.isPresent()){
+            throw new Exception("Empty request.");
+        }
 
-            JSONObject response = json.get();
+        return json.get();
+    }
+    public static Pokemon getPokemonCard(String pokeQuery) throws Exception {
+        JSONObject json = makeGetPokemonRequest(pokeQuery);
+        return PokemonParse.parsePokemonCardInfos(json);
+    }
 
-            return Optional.of(PokemonParse.parsePokemonResponse(response));
+    public static Pokemon getPokemon(String pokeQuery) throws Exception {
+        JSONObject json = makeGetPokemonRequest(pokeQuery);
+        return PokemonParse.parseFullPokemon(json);
     }
 
     public static Optional<Pokemon> getPokemonImage(String pokeQuery) throws Exception {
-        Optional<JSONObject> json = PokeRequest.getRequest(PokeURL + PokeEndPoint + pokeQuery);
+        String formatedPokeQuery = pokeQuery.toLowerCase().trim();
+        Optional<JSONObject> json = PokeRequest.getRequest(PokeURL + PokeEndPoint + formatedPokeQuery);
 
         if (!json.isPresent()){
             return Optional.empty();
@@ -61,8 +78,15 @@ public class PokemonUtil {
         return Optional.of(pokemon);
     }
 
+    public static Pokemon getRandomPokemon() throws Exception{
+        int randomId = ThreadLocalRandom.current().nextInt(0, 500);
+
+        return getPokemonCard(String.valueOf(randomId));
+    }
+
     public static boolean pokemonExists(String pokeQuery) throws Exception {
-        Optional<JSONObject> json = PokeRequest.getRequest(PokeURL + PokeEndPoint + pokeQuery);
+        String formatedPokeQuery = pokeQuery.toLowerCase().trim();
+        Optional<JSONObject> json = PokeRequest.getRequest(PokeURL + PokeEndPoint + formatedPokeQuery);
 
         Log.d("POKEMON_EXIST", json.toString());
 
@@ -105,18 +129,5 @@ public class PokemonUtil {
         int randomPos = ThreadLocalRandom.current().nextInt(0, length);
 
         return arr.getJSONObject(randomPos);
-    }
-
-    public static ArrayList<Pokemon> getPokemonsByIds(int... ids) throws Exception{
-        ArrayList<Pokemon> pokemons = new ArrayList<>();
-
-        for(int id : ids) {
-            Optional<Pokemon> pokemon = getPokemon(String.valueOf(id));
-
-            // adiciona somente pokemons que existem.
-            pokemon.ifPresent(pokemons::add);
-        }
-
-        return pokemons;
     }
 }
