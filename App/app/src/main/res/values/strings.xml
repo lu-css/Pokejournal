@@ -45,7 +45,7 @@
 
     /*Menu detalhes*/
     <string name="menu_1">Início</string>
-    <string name="menu_2">Favoritos</string>
+    <string name="menu_2">Cadastro</string>
     <string name="menu_3">Quiz</string>
     <string name="menu">Place</string>
     <string name="favo">Favoritar</string>
@@ -56,5 +56,9 @@
     <string name="appwidget_text">PokeJournal</string>
     <string name="Widget">Abrir PokeJournal</string>
     <string name="app_widget_description">Widget description</string>
+    <string name="txtUser">Digite seu nome</string>
+    <string name="txtSenha">Digite sua senha</string>
+    <string name="txtConfSenha">Confirme a Senha</string>
+    <string name="btnCadastrar">Cadastrar</string>
 
 </resources>

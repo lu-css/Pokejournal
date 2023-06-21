@@ -18,7 +18,7 @@ Handler handler;
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(MainActivity.this,tela_inicial.class);
+                Intent intent = new Intent(MainActivity.this, navbar.class);
                 startActivity(intent);
                 finish();
             }

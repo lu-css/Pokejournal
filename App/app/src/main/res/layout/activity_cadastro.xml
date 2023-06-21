@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Cadastro">
+
+    <EditText
+        android:id="@+id/txtUser"
+        android:layout_width="295dp"
+        android:layout_height="64dp"
+        android:background="@drawable/white_rectangle_background"
+        android:ems="10"
+        android:hint="@string/txtUser"
+        android:inputType="text"
+        android:textColor="@color/pokemon_black"
+        android:textColorHint="@color/pokemon_black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.314" />
+
+    <EditText
+        android:id="@+id/txtPassword"
+        android:layout_width="295dp"
+        android:layout_height="64dp"
+        android:background="@drawable/white_rectangle_background"
+        android:ems="10"
+        android:hint="@string/txtSenha"
+        android:inputType="text"
+        android:textColorHint="@color/pokemon_black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.442" />
+
+    <EditText
+        android:id="@+id/txtRepassword"
+        android:layout_width="295dp"
+        android:layout_height="64dp"
+        android:background="@drawable/white_rectangle_background"
+        android:ems="10"
+        android:hint="@string/txtConfSenha"
+        android:inputType="text"
+        android:textColorHint="@color/pokemon_black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.587" />
+
+    <Button
+        android:id="@+id/btnSingup"
+        android:layout_width="148dp"
+        android:layout_height="74dp"
+        android:text="@string/btnCadastrar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.475"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.774" />
+</androidx.constraintlayout.widget.ConstraintLayout>

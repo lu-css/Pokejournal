@@ -9,8 +9,6 @@ import android.widget.TextView;
 
 public class navbar extends AppCompatActivity {
 
-    private ImageView botao_inicio;
-    private TextView texto_inicio;
 
     private ImageView menu;
     private TextView menu2;
@@ -26,7 +24,7 @@ public class navbar extends AppCompatActivity {
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (navbar.this, Favoritos.class);
+                Intent intent = new Intent (navbar.this, Cadastro.class);
                 startActivity(intent);
             }
         });
@@ -34,7 +32,7 @@ public class navbar extends AppCompatActivity {
         menu2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (navbar.this, Favoritos.class);
+                Intent intent = new Intent (navbar.this, Cadastro.class);
                 startActivity(intent);
             }
         });

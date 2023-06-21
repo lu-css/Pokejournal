@@ -44,7 +44,6 @@ public class detalhePokemonActivity extends AppCompatActivity implements LoaderM
         args.putString("pokemon_id", pokemonId);
 
         getSupportLoaderManager().restartLoader(0, args, this);
-        db = new DatabaseHelper(this);
     }
 
     @Override
@@ -56,24 +55,6 @@ public class detalhePokemonActivity extends AppCompatActivity implements LoaderM
     public void openNav(View v){
         Intent intent = new Intent(this, navbar.class);
         startActivity(intent);
-    }
-
-    public void favButtonToggle(View v){
-        if(!finishLoad){
-            Toast.makeText(this, "Carregando!", Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        if(pokeId.isEmpty()){
-            Toast.makeText(this, "Vazio", Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        if(db.insertPokemon(pokeId)){
-            Toast.makeText(this, "FAVORITADO", Toast.LENGTH_LONG).show();
-        }
-
-        Toast.makeText(this, "Erro ao salvar", Toast.LENGTH_LONG).show();
     }
 
     @NonNull
