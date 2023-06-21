@@ -24,6 +24,29 @@
         <activity
             android:name=".quizActivity"
             android:exported="false" />
+        <receiver
+            android:name=".PokeWidget"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_poke_info" />
+        </receiver>
+
+        <receiver
+            android:name=".PokeProvider"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_poke_info" />
+        </receiver>
         <activity
             android:name=".detalhePokemonActivity"
             android:exported="false" />
