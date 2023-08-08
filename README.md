@@ -6,7 +6,7 @@
 
 ### 3°A Etim - Desenvolvimento de Sistemas
 > Débora Liberato Ribeiro ╰(*°▽°*)╯<br>
-> Pedro Luís Anghievisck
+> Lucas dos Santos Silva
 
 ```java
 public class InfoGeral{
