@@ -1,10 +1,12 @@
-package com.example.pokejournal;
+package com.example.pokejournal.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+
+import com.example.pokejournal.R;
 
 
 public class t_deta_bulba extends AppCompatActivity {

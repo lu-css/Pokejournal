@@ -1,11 +1,11 @@
-package com.example.helpers;
+package com.example.pokejournal.helpers;
 
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
 import com.example.pokejournal.R;
-import com.example.pokejournal.detalhePokemonActivity;
+import com.example.pokejournal.activities.detalhePokemonActivity;
 
 public class ActivityHelper {
     public static final String INTENT_POKEMON_ID = "POKEMON_ID";

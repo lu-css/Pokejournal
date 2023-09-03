@@ -1,9 +1,8 @@
-package com.example.requests;
+package com.example.pokejournal.requests;
 
-import com.example.models.Pokemon;
+import com.example.pokejournal.models.Pokemon;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.example.pokejournal;
+package com.example.pokejournal.activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,10 +16,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.helpers.ActivityHelper;
-import com.example.models.Pokemon;
-import com.example.requests.PokemonUtil;
-import com.example.storage.DatabaseHelper;
+import com.example.pokejournal.R;
+import com.example.pokejournal.helpers.ActivityHelper;
+import com.example.pokejournal.models.Pokemon;
+import com.example.pokejournal.requests.PokemonUtil;
+import com.example.pokejournal.storage.DatabaseHelper;
 import com.squareup.picasso.Picasso;
 
 public class detalhePokemonActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Model>{

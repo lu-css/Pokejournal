@@ -1,4 +1,4 @@
-package com.example.pokejournal;
+package com.example.pokejournal.activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,9 +16,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.helpers.ImageHelper;
-import com.example.models.Pokemon;
-import com.example.requests.PokemonUtil;
+import com.example.pokejournal.R;
+import com.example.pokejournal.helpers.ImageHelper;
+import com.example.pokejournal.models.Pokemon;
+import com.example.pokejournal.requests.PokemonUtil;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 

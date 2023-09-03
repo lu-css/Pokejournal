@@ -1,4 +1,4 @@
-package com.example.pokejournal;
+package com.example.pokejournal.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -7,9 +7,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.pokejournal.R;
+
 public class navbar extends AppCompatActivity {
-
-
     private ImageView menu;
     private TextView menu2;
 

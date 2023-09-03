@@ -1,4 +1,4 @@
-package com.example.models;
+package com.example.pokejournal.models;
 
 import org.json.JSONObject;
 

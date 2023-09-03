@@ -1,4 +1,4 @@
-package com.example.pokejournal;
+package com.example.pokejournal.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import com.example.storage.DatabaseHelper;
+
+import com.example.pokejournal.R;
+import com.example.pokejournal.storage.DatabaseHelper;
 import android.widget.Toast;
 public class Cadastro extends AppCompatActivity {
     EditText username, password, repassword;

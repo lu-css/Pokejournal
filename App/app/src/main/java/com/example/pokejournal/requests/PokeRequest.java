@@ -1,4 +1,4 @@
-package com.example.requests;
+package com.example.pokejournal.requests;
 
 import org.json.JSONObject;
 

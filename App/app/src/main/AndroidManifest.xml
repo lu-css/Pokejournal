@@ -19,13 +19,13 @@
             android:name=".Favoritos"
             android:exported="false" />
         <activity
-            android:name=".QuizActivity"
+            android:name=".activities.QuizActivity"
             android:exported="false" />
         <activity
             android:name=".quizActivity"
             android:exported="false" />
         <receiver
-            android:name=".PokeWidget"
+            android:name=".activities.PokeWidget"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -37,7 +37,7 @@
         </receiver>
 
         <receiver
-            android:name=".PokeProvider"
+            android:name=".activities.PokeProvider"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -48,19 +48,19 @@
                 android:resource="@xml/widget_poke_info" />
         </receiver>
         <activity
-            android:name=".detalhePokemonActivity"
+            android:name=".activities.detalhePokemonActivity"
             android:exported="false" />
         <activity
-            android:name=".navbar"
+            android:name=".activities.navbar"
             android:exported="false" />
         <activity
-            android:name=".t_deta_bulba"
+            android:name=".activities.t_deta_bulba"
             android:exported="false" />
         <activity
-            android:name=".tela_inicial"
+            android:name=".activities.tela_inicial"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

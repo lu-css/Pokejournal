@@ -1,10 +1,7 @@
-package com.example.pokejournal;
+package com.example.pokejournal.activities;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,15 +19,13 @@ import androidx.loader.app.LoaderManager;
 import androidx.loader.content.AsyncTaskLoader;
 import androidx.loader.content.Loader;
 
-import com.example.helpers.ActivityHelper;
-import com.example.models.Pokemon;
-import com.example.requests.PokemonUtil;
+import com.example.pokejournal.R;
+import com.example.pokejournal.helpers.ActivityHelper;
+import com.example.pokejournal.models.Pokemon;
+import com.example.pokejournal.requests.PokemonUtil;
 import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Optional;
-import java.util.concurrent.ExecutionException;
 
 public class tela_inicial extends AppCompatActivity implements LoaderManager.LoaderCallbacks<TelaInicialModel> {
 

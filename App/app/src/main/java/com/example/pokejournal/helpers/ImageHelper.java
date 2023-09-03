@@ -1,4 +1,4 @@
-package com.example.helpers;
+package com.example.pokejournal.helpers;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;
