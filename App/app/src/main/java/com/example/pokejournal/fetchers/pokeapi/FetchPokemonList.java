@@ -1,4 +1,4 @@
-package com.example.pokejournal.fetchers;
+package com.example.pokejournal.fetchers.pokeapi;
 
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -12,19 +12,21 @@ public class FetchPokemonList {
     public interface FetchPokemonListListener {
          void PokemonListNewItem(Pokemon pokemon);
          void PokemonLIstOnFail(Exception exception);
-         void PokemonListFinish();
     }
 
     private final FetchPokemonListListener _listener;
-    private final Handler _handler;
+    private final HandlerThread _thread;
 
-    public FetchPokemonList(Handler handler, FetchPokemonListListener listener){
-        _handler = handler;
+    public FetchPokemonList(FetchPokemonListListener listener){
+
         _listener = listener;
+        _thread = new HandlerThread("PokemonListFetcher");
     }
 
     public void Execute(List<String> pokemonQueries){
-        _handler.post(() -> {
+        _thread.start();
+        Handler handler = new Handler(_thread.getLooper());
+        handler.post(() -> {
             for(String pokemonQuery : pokemonQueries){
 
                 try{
@@ -35,7 +37,11 @@ public class FetchPokemonList {
                 }
             }
 
-            _listener.PokemonListFinish();
+            Stop();
         });
+    }
+
+    public void Stop(){
+        _thread.quit();
     }
 }

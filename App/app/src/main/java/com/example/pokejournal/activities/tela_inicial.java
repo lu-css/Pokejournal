@@ -16,7 +16,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.pokejournal.R;
-import com.example.pokejournal.fetchers.FetchPokemonList;
+import com.example.pokejournal.fetchers.pokeapi.FetchPokemonList;
+import com.example.pokejournal.fetchers.pokeapi.FetchSearchPokemon;
 import com.example.pokejournal.helpers.ActivityHelper;
 import com.example.pokejournal.models.Pokemon;
 import com.squareup.picasso.Picasso;
@@ -25,13 +26,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class tela_inicial extends AppCompatActivity implements FetchPokemonList.FetchPokemonListListener
+public class tela_inicial extends AppCompatActivity implements FetchPokemonList.FetchPokemonListListener, FetchSearchPokemon.OnFetchSearchPokemon
 {
     private ImageView img_bulbB;
     private final ArrayList<Pokemon> pokemonCards = new ArrayList<>();
     private ArrayAdapter<Pokemon> adapter;
     private EditText edit_searchBar;
-    private HandlerThread pokemonListThread;
+    private FetchSearchPokemon _fetchSearchPokemon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,18 +88,22 @@ public class tela_inicial extends AppCompatActivity implements FetchPokemonList.
 
         gridView.setAdapter(adapter);
 
-        this.pokemonListThread = new HandlerThread("PokemonListFetcher");
-        pokemonListThread.start();
-
-        FetchPokemonList fetch = new FetchPokemonList(new Handler(pokemonListThread.getLooper()),this);
         List<String> pokemonsToShow = Arrays.asList("bulbasaur", "ivysaur", "charmander", "squirtle", "carterpie", "weedle", "pidgey", "rattata",
                 "spearow", "ekans", "pikachu", "sandshrew", "clfairy", "ninetales", "jigglypuff");
 
+        _fetchSearchPokemon = new FetchSearchPokemon(this);
+
+        FetchPokemonList fetch = new FetchPokemonList(this);
         fetch.Execute(pokemonsToShow);
     }
 
     private void goToPokemonDescriptionActivity(String pokedexEntry){
         startActivity(ActivityHelper.getPokemonDetailsIntent(this, pokedexEntry));
+    }
+
+    public void startSearch(View v){
+        String pokemonQuery = edit_searchBar.getText().toString();
+        _fetchSearchPokemon.Execute(pokemonQuery);
     }
 
     @Override
@@ -112,12 +117,22 @@ public class tela_inicial extends AppCompatActivity implements FetchPokemonList.
     @Override
     public void PokemonLIstOnFail(Exception exception) {
         Toast.makeText(tela_inicial.this, exception.toString(), Toast.LENGTH_LONG).show();
-
-        exception.printStackTrace();
     }
 
     @Override
-    public void PokemonListFinish() {
-        pokemonListThread.quit();
+    public void onPokemonSearchFinish(Pokemon pokemon) {
+        runOnUiThread(() -> {
+            if(pokemon != null){
+                goToPokemonDescriptionActivity(pokemon.pokedexEntry);
+                return;
+            }
+
+            Toast.makeText(tela_inicial.this, "Pokemon Not founded.", Toast.LENGTH_SHORT).show();
+        });
+    }
+
+    @Override
+    public void onPokemonSearchFail(Exception exception) {
+        Toast.makeText(tela_inicial.this, exception.toString(), Toast.LENGTH_LONG).show();
     }
 }
