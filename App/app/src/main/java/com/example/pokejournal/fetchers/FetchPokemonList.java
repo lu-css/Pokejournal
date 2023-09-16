@@ -23,24 +23,19 @@ public class FetchPokemonList {
         _listener = listener;
     }
 
-    private Runnable run(List<String> pokemonQueries){
-        return new Runnable() {
-            @Override
-            public void run() {
-                    for(String pokemonQuery : pokemonQueries){
-                        try{
-                        Pokemon pokemon = PokemonUtil.getPokemonCard(pokemonQuery);
-                        _listener.PokemonListNewItem(pokemon);
-                        } catch (Exception e){
-                            _listener.PokemonLIstOnFail(e);
-                        }
-                    }
-                _listener.PokemonListFinish();
-            }
-        };
-    }
+    public void Execute(List<String> pokemonQueries){
+        _handler.post(() -> {
+            for(String pokemonQuery : pokemonQueries){
 
-    public void Execute(List<String> pokemonIds){
-        _handler.post(run(pokemonIds));
+                try{
+                    Pokemon pokemon = PokemonUtil.getPokemonCard(pokemonQuery);
+                    _listener.PokemonListNewItem(pokemon);
+                } catch (Exception e){
+                    _listener.PokemonLIstOnFail(e);
+                }
+            }
+
+            _listener.PokemonListFinish();
+        });
     }
 }

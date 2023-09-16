@@ -1,6 +1,5 @@
 package com.example.pokejournal.activities;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -14,18 +13,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.loader.app.LoaderManager;
-import androidx.loader.content.AsyncTaskLoader;
-import androidx.loader.content.Loader;
 
 import com.example.pokejournal.R;
 import com.example.pokejournal.fetchers.FetchPokemonList;
 import com.example.pokejournal.helpers.ActivityHelper;
 import com.example.pokejournal.models.Pokemon;
-import com.example.pokejournal.requests.PokemonUtil;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -34,7 +27,6 @@ import java.util.List;
 
 public class tela_inicial extends AppCompatActivity implements FetchPokemonList.FetchPokemonListListener
 {
-
     private ImageView img_bulbB;
     private final ArrayList<Pokemon> pokemonCards = new ArrayList<>();
     private ArrayAdapter<Pokemon> adapter;
@@ -114,12 +106,9 @@ public class tela_inicial extends AppCompatActivity implements FetchPokemonList.
 
     @Override
     public void PokemonListNewItem(Pokemon pokemon) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                pokemonCards.add(pokemon);
-                adapter.notifyDataSetChanged();
-            }
+        runOnUiThread(() -> {
+            pokemonCards.add(pokemon);
+            adapter.notifyDataSetChanged();
         });
     }
 
