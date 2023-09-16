@@ -2,6 +2,8 @@ package com.example.pokejournal.activities;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,23 +22,24 @@ import androidx.loader.content.AsyncTaskLoader;
 import androidx.loader.content.Loader;
 
 import com.example.pokejournal.R;
+import com.example.pokejournal.fetchers.FetchPokemonList;
 import com.example.pokejournal.helpers.ActivityHelper;
 import com.example.pokejournal.models.Pokemon;
 import com.example.pokejournal.requests.PokemonUtil;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-public class tela_inicial extends AppCompatActivity implements LoaderManager.LoaderCallbacks<TelaInicialModel> {
+public class tela_inicial extends AppCompatActivity implements FetchPokemonList.FetchPokemonListListener
+{
 
     private ImageView img_bulbB;
     private final ArrayList<Pokemon> pokemonCards = new ArrayList<>();
     private ArrayAdapter<Pokemon> adapter;
     private EditText edit_searchBar;
-    private final int LIST_POKEMON_LOADER = 0;
-    private final int SEARCH_POKEMON_LOADER = 1;
-    private LoaderManager loaderManager;
-
+    private HandlerThread pokemonListThread;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,7 +83,6 @@ public class tela_inicial extends AppCompatActivity implements LoaderManager.Loa
                     }
                 }
 
-
                 convertView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -96,167 +98,40 @@ public class tela_inicial extends AppCompatActivity implements LoaderManager.Loa
 
         gridView.setAdapter(adapter);
 
-        Bundle query = new Bundle();
+        this.pokemonListThread = new HandlerThread("PokemonListFetcher");
+        pokemonListThread.start();
 
-        loaderManager = LoaderManager.getInstance(this);
-        Loader<TelaInicialModel> listPokemonLoader = loaderManager.getLoader(LIST_POKEMON_LOADER);
+        FetchPokemonList fetch = new FetchPokemonList(new Handler(pokemonListThread.getLooper()),this);
+        List<String> pokemonsToShow = Arrays.asList("bulbasaur", "ivysaur", "charmander", "squirtle", "carterpie", "weedle", "pidgey", "rattata",
+                "spearow", "ekans", "pikachu", "sandshrew", "clfairy", "ninetales", "jigglypuff");
 
-        if(listPokemonLoader == null){
-            loaderManager.initLoader(LIST_POKEMON_LOADER, query, this);
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        loaderManager.destroyLoader(SEARCH_POKEMON_LOADER);
-        loaderManager.destroyLoader(LIST_POKEMON_LOADER);
+        fetch.Execute(pokemonsToShow);
     }
 
     private void goToPokemonDescriptionActivity(String pokedexEntry){
         startActivity(ActivityHelper.getPokemonDetailsIntent(this, pokedexEntry));
     }
 
-    private void addPokemonCards(ArrayList<Pokemon> pokemons){
-        pokemonCards.addAll(pokemons);
-        adapter.notifyDataSetChanged();
-    }
-
-    public void startSearch(View v){
-        String query = edit_searchBar.getText().toString();
-
-        Bundle args = new Bundle();
-
-        args.putString("pokemon_id", query);
-
-        LoaderManager loaderManager = LoaderManager.getInstance(this);
-        Loader<TelaInicialModel> searchPokemonLoader = loaderManager.getLoader(SEARCH_POKEMON_LOADER);
-
-        if(searchPokemonLoader == null){
-            loaderManager.initLoader(SEARCH_POKEMON_LOADER, args, this);
-        }
-    }
-
-    @NonNull
     @Override
-    public Loader<TelaInicialModel> onCreateLoader(int id, @Nullable Bundle args) {
-        if (id == SEARCH_POKEMON_LOADER) {
-            return new SearchLoader(this, args);
-        }
-
-        return new TelaInicialLoader(this, args);
-    }
-
-    @Override
-    public void onLoadFinished(@NonNull Loader<TelaInicialModel> loader, TelaInicialModel data) {
-        if(!data.searchedPokemon.isEmpty()){
-            goToPokemonDescriptionActivity(String.valueOf(data.searchedPokemon));
-            return;
-        }
-
-        if(data.hasError()){
-            Toast.makeText(this, data.errorMessage,Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        addPokemonCards(data.pokemons);
-    }
-
-    @Override
-    public void onLoaderReset(@NonNull Loader<TelaInicialModel> loader) { }
-}
-
-class TelaInicialModel{
-    public final ArrayList<Pokemon> pokemons;
-    public final String errorMessage;
-    public String searchedPokemon = "";
-    private boolean hasError = false;
-
-    public TelaInicialModel(){
-        this.errorMessage = "";
-        this.pokemons = new ArrayList<>();
-        this.hasError = true;
-    }
-
-    public TelaInicialModel(String errorMessage){
-        this.errorMessage = errorMessage;
-        this.pokemons = new ArrayList<>();
-        this.hasError = true;
-    }
-
-    public TelaInicialModel(ArrayList<Pokemon> pokemons){
-        this.pokemons = pokemons;
-        this.errorMessage = "";
-    }
-
-    public boolean hasError(){
-        return hasError;
-    }
-
-}
-class TelaInicialLoader extends AsyncTaskLoader<TelaInicialModel> {
-    public TelaInicialLoader(@NonNull Context context, Bundle args) {
-        super(context);
-    }
-
-    @Override
-    protected void onStartLoading(){
-        super.onStartLoading();
-        forceLoad();
-    }
-
-    @Nullable
-    @Override
-    public TelaInicialModel loadInBackground() {
-        try{
-            ArrayList<Pokemon> pokemons = PokemonUtil.getManyPokemonCards("bulbasaur", "ivysaur", "charmander", "squirtle", "carterpie", "weedle", "pidgey", "rattata",
-                    "spearow", "ekans", "pikachu", "sandshrew", "clfairy", "ninetales", "jigglypuff");
-
-            return new TelaInicialModel(pokemons);
-        }
-        catch (Exception e){
-            e.printStackTrace();
-            return new TelaInicialModel("ERRO: " + e.getMessage());
-        }
-    }
-}
-
-
-class SearchLoader extends AsyncTaskLoader<TelaInicialModel> {
-    private Bundle args;
-    private final String pokemon_id;
-
-    public SearchLoader(@NonNull Context context, Bundle args) {
-        super(context);
-        this.pokemon_id = args.getString("pokemon_id");
-    }
-
-    @Override
-    protected void onStartLoading(){
-        super.onStartLoading();
-        forceLoad();
-    }
-
-    @Nullable
-    @Override
-    public TelaInicialModel loadInBackground() {
-        try{
-            // Some validations
-            boolean pokemonExists = PokemonUtil.pokemonExists(pokemon_id.trim().toLowerCase());
-
-            if(!pokemonExists){
-                return new TelaInicialModel("Pokemon Does not exists");
+    public void PokemonListNewItem(Pokemon pokemon) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                pokemonCards.add(pokemon);
+                adapter.notifyDataSetChanged();
             }
+        });
+    }
 
-            TelaInicialModel tela = new TelaInicialModel();
+    @Override
+    public void PokemonLIstOnFail(Exception exception) {
+        Toast.makeText(tela_inicial.this, exception.toString(), Toast.LENGTH_LONG).show();
 
-            tela.searchedPokemon = pokemon_id;
+        exception.printStackTrace();
+    }
 
-            return tela;
-        }catch (Exception e){
-            return new TelaInicialModel("ERRO: " + e.getMessage());
-        }
+    @Override
+    public void PokemonListFinish() {
+        pokemonListThread.quit();
     }
 }
-
-
