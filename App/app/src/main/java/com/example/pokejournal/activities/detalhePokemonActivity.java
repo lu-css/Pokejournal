@@ -116,11 +116,8 @@ public class detalhePokemonActivity extends AppCompatActivity implements LoaderM
             return;
         }
 
-        img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goToDetailPokemon(pokemon.pokedexEntry);
-            }
+        img.setOnClickListener((View view) -> {
+            goToDetailPokemon(pokemon.pokedexEntry);
         });
     }
 

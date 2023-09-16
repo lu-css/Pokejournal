@@ -75,12 +75,9 @@ public class tela_inicial extends AppCompatActivity implements FetchPokemonList.
                     }
                 }
 
-                convertView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        goToPokemonDescriptionActivity(pokemon.pokedexEntry);
-                    }
-                });
+                convertView.setOnClickListener((View view) ->
+                        goToPokemonDescriptionActivity(pokemon.pokedexEntry)
+                );
 
                 return convertView;
             }
