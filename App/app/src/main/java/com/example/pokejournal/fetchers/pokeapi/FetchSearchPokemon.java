@@ -27,7 +27,7 @@ public class FetchSearchPokemon {
         Handler handler = new Handler(_thread.getLooper());
         handler.post(() -> {
             try{
-                Pokemon pokemon = PokemonUtil.getPokemonCard(pokemonQuery);
+                Pokemon pokemon = PokemonUtil.getPokemon(pokemonQuery);
                 _listener.onPokemonSearchFinish(pokemon);
             } catch (Exception e){
                 _listener.onPokemonSearchFail(e);

@@ -1,80 +1,43 @@
 package com.example.pokejournal.activities;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.loader.app.LoaderManager;
-import androidx.loader.content.AsyncTaskLoader;
-import androidx.loader.content.Loader;
-
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pokejournal.R;
+import com.example.pokejournal.fetchers.pokeapi.FetchSearchPokemon;
 import com.example.pokejournal.helpers.ActivityHelper;
 import com.example.pokejournal.models.Pokemon;
-import com.example.pokejournal.requests.PokemonUtil;
 import com.example.pokejournal.storage.DatabaseHelper;
 import com.squareup.picasso.Picasso;
 
-public class detalhePokemonActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Model>{
-    private String pokemonId = "";
-    private boolean finishLoad = false;
+public class detalhePokemonActivity extends AppCompatActivity implements FetchSearchPokemon.OnFetchSearchPokemon
+{
     DatabaseHelper db;
-
-    private String pokeId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhe_pokemon);
 
         Intent intentDisplay = getIntent();
-        pokemonId = intentDisplay.getStringExtra(ActivityHelper.INTENT_POKEMON_ID);
-
-        if (getSupportLoaderManager().getLoader(0) != null) {
-            getSupportLoaderManager().initLoader(0, null, this);
-        }
-
-        Bundle args = new Bundle();
-        args.putString("pokemon_id", pokemonId);
-
-        getSupportLoaderManager().restartLoader(0, args, this);
+        String pokemonId = intentDisplay.getStringExtra(ActivityHelper.INTENT_POKEMON_ID);
+        FetchSearchPokemon fetchSearchPokemon = new FetchSearchPokemon(this);
+        fetchSearchPokemon.Execute(pokemonId);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        LoaderManager.getInstance(this).destroyLoader(0);
     }
 
     public void openNav(View v){
         Intent intent = new Intent(this, navbar.class);
         startActivity(intent);
-    }
-
-    @NonNull
-    @Override
-    public Loader<Model> onCreateLoader(int id, @Nullable Bundle args) {
-        Log.d("FINISH", "START");
-        return new DetalheLoader(this, args);
-    }
-
-    @Override
-    public void onLoadFinished(@NonNull Loader<Model> loader, Model data) {
-        if (data.hasError()){
-            Toast.makeText(this, data.errorMessage, Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        renderPokemonInfos(data.pokemon);
-        pokeId = data.pokemon.pokedexEntry;
-        finishLoad = true;
     }
 
     private void renderPokemonInfos(Pokemon pokemon){
@@ -127,55 +90,14 @@ public class detalhePokemonActivity extends AppCompatActivity implements LoaderM
     }
 
     @Override
-    public void onLoaderReset(@NonNull Loader<Model> loader) { }
-
-}
-
-class Model {
-    public final String errorMessage;
-    public final Pokemon pokemon;
-    private boolean hasError = false;
-
-    Model(String errorMessage) {
-        this.errorMessage = errorMessage;
-        this.pokemon = null;
-        hasError = true;
-    }
-
-    Model(Pokemon pokemon){
-        this.pokemon = pokemon;
-        this.errorMessage = "";
-    }
-
-    public boolean hasError(){
-        return hasError;
-    }
-}
-
-class DetalheLoader extends AsyncTaskLoader<Model> {
-
-    private String pokemonId;
-    public DetalheLoader(@NonNull Context context, Bundle args) {
-        super(context);
-        this.pokemonId = args.getString("pokemon_id");
+    public void onPokemonSearchFinish(Pokemon pokemon) {
+        runOnUiThread(() -> {
+            renderPokemonInfos(pokemon);
+        });
     }
 
     @Override
-    protected void onStartLoading(){
-        super.onStartLoading();
-        forceLoad();
-    }
-
-    @Nullable
-    @Override
-    public Model loadInBackground() {
-        try{
-            Pokemon pokemon = PokemonUtil.getPokemon(pokemonId);
-
-            return new Model(pokemon);
-        }
-        catch (Exception e){
-            return new Model("ERROR: " + e.getMessage());
-        }
+    public void onPokemonSearchFail(Exception e) {
+        Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
     }
 }

@@ -55,7 +55,6 @@ public class ActivityHelper {
     }
 
     public static int getPokemonColor(String color){
-        Log.d("POKEMON_COLOR", color);
         switch (color){
             case ("blue"):
                 return R.drawable.fundo_azul;
