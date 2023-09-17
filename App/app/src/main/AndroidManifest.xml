@@ -57,6 +57,9 @@
             android:name=".activities.t_deta_bulba"
             android:exported="false" />
         <activity
+            android:name=".activities.Cadastro"
+            android:exported="false" />
+        <activity
             android:name=".activities.tela_inicial"
             android:exported="false" />
         <activity
