@@ -2,6 +2,7 @@ package com.example.pokejournal.fetchers.pokeapi;
 
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.util.Log;
 
 import com.example.pokejournal.models.Pokemon;
 import com.example.pokejournal.requests.PokemonUtil;

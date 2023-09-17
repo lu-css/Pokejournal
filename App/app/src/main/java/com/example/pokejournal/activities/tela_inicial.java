@@ -32,7 +32,6 @@ public class tela_inicial extends AppCompatActivity implements FetchPokemonList.
     private final ArrayList<Pokemon> pokemonCards = new ArrayList<>();
     private ArrayAdapter<Pokemon> adapter;
     private EditText edit_searchBar;
-    private FetchSearchPokemon _fetchSearchPokemon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,7 +90,6 @@ public class tela_inicial extends AppCompatActivity implements FetchPokemonList.
         List<String> pokemonsToShow = Arrays.asList("bulbasaur", "ivysaur", "charmander", "squirtle", "carterpie", "weedle", "pidgey", "rattata",
                 "spearow", "ekans", "pikachu", "sandshrew", "clfairy", "ninetales", "jigglypuff");
 
-        _fetchSearchPokemon = new FetchSearchPokemon(this);
 
         FetchPokemonList fetch = new FetchPokemonList(this);
         fetch.Execute(pokemonsToShow);
@@ -103,7 +101,8 @@ public class tela_inicial extends AppCompatActivity implements FetchPokemonList.
 
     public void startSearch(View v){
         String pokemonQuery = edit_searchBar.getText().toString();
-        _fetchSearchPokemon.Execute(pokemonQuery);
+        FetchSearchPokemon fetchSearchPokemon = new FetchSearchPokemon(this);
+        fetchSearchPokemon.Execute(pokemonQuery);
     }
 
     @Override
