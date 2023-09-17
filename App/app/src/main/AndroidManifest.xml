@@ -19,13 +19,13 @@
             android:name=".Favoritos"
             android:exported="false" />
         <activity
-            android:name=".activities.QuizActivity"
+            android:name=".application.activities.QuizActivity"
             android:exported="false" />
         <activity
             android:name=".quizActivity"
             android:exported="false" />
         <receiver
-            android:name=".activities.PokeWidget"
+            android:name=".application.activities.PokeWidget"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -37,7 +37,7 @@
         </receiver>
 
         <receiver
-            android:name=".activities.PokeProvider"
+            android:name=".application.activities.PokeProvider"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -48,22 +48,22 @@
                 android:resource="@xml/widget_poke_info" />
         </receiver>
         <activity
-            android:name=".activities.detalhePokemonActivity"
+            android:name=".application.activities.detalhePokemonActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.navbar"
+            android:name=".application.activities.navbar"
             android:exported="false" />
         <activity
-            android:name=".activities.t_deta_bulba"
+            android:name=".application.activities.t_deta_bulba"
             android:exported="false" />
         <activity
-            android:name=".activities.Cadastro"
+            android:name=".application.activities.Cadastro"
             android:exported="false" />
         <activity
-            android:name=".activities.tela_inicial"
+            android:name=".application.activities.tela_inicial"
             android:exported="false" />
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".application.activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
