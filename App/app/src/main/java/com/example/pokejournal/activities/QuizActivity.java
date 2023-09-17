@@ -28,9 +28,10 @@ public class QuizActivity extends AppCompatActivity  implements FetchRandomPokem
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
         loadViews();
-        FetchRandomPokemon fetchRandomPokemon = new FetchRandomPokemon(this);
-        fetchRandomPokemon.Execute();
+        loadRandomPokemon(null);
     }
+
+    private void loadRandomPokemon(View v){ new FetchRandomPokemon(this).Execute(); }
 
     private void loadViews(){
         img_pokemonQuiz = findViewById(R.id.pokemon_quiz_img);
