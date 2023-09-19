@@ -22,7 +22,7 @@ public class PokeApi implements PokeApiAdapter
     private final String BASE_URL = "https://pokeapi.co/api/v2/";
     private final String POKEMON_ENDPOINT = "pokemon/";
     private final String SPECIES_ENDPOINT = "pokemon-species/";
-    private final SimpleRequestAdapter _simpleRequest = new OkHttpSimpleRequest();
+    private final SimpleRequestAdapter _simpleRequest = new OkHttpSimpleRequest(null);
     private final PokeApiParser _parser = new PokeApiParser();
     private String formatPokequery(String query){ return query.trim().toLowerCase(); }
 
