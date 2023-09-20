@@ -18,22 +18,24 @@ public class TeamService implements TeamUsecase
     }
     @Override
     public List<PokemonTeam> ListTeams() throws MalformedException, NotFoundException, IOException, HttpRequestException {
-       return _pokejournal.ListTeams("");
+        // TODO: Get user id by Preferences.
+        String userId = "";
+       return _pokejournal.ListTeams(userId);
     }
 
     @Override
-    public PokemonTeam ShowTeam(String teamId) {
-        return null;
+    public PokemonTeam ShowTeam(String teamId) throws MalformedException, NotFoundException, HttpRequestException, IOException {
+        return _pokejournal.ShowTeam(teamId);
     }
 
     @Override
-    public PokemonTeam CreateTeam(PokemonTeam team) {
-        return null;
+    public PokemonTeam CreateTeam(PokemonTeam team) throws MalformedException, NotFoundException, HttpRequestException, IOException {
+        return _pokejournal.CreateTeam(team);
     }
 
     @Override
-    public void DeleteTeam(String teamId) {
-
+    public void DeleteTeam(String teamId) throws MalformedException, NotFoundException, HttpRequestException, IOException {
+        _pokejournal.DeleteTeam(teamId);
     }
 
     @Override
