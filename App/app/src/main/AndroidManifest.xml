@@ -16,6 +16,9 @@
         android:theme="@style/webViewFullScreen"
         tools:targetApi="31">
         <activity
+            android:name=".application.activities.Favoritos"
+            android:exported="false" />
+        <activity
             android:name=".application.activities.Login"
             android:exported="false" />
         <activity
