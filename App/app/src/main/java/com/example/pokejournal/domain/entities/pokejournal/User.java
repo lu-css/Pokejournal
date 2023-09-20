@@ -16,4 +16,9 @@ public class User {
         this.email = email;
         this.token = token;
     }
+
+    public String getUsername(){return username;}
+    public String getEmail(){return email;}
+    public String getToken(){return token;}
+
 }

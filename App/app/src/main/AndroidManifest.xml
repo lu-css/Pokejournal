@@ -16,6 +16,9 @@
         android:theme="@style/webViewFullScreen"
         tools:targetApi="31">
         <activity
+            android:name=".application.activities.Login"
+            android:exported="false" />
+        <activity
             android:name=".Favoritos"
             android:exported="false" />
         <activity
@@ -24,6 +27,7 @@
         <activity
             android:name=".quizActivity"
             android:exported="false" />
+
         <receiver
             android:name=".application.activities.PokeWidget"
             android:exported="false">
@@ -35,7 +39,6 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_poke_info" />
         </receiver>
-
         <receiver
             android:name=".application.activities.PokeProvider"
             android:exported="true">
@@ -47,6 +50,7 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_poke_info" />
         </receiver>
+
         <activity
             android:name=".application.activities.detalhePokemonActivity"
             android:exported="false" />
