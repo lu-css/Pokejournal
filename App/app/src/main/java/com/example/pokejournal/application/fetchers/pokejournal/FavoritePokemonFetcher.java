@@ -17,7 +17,7 @@ public class FavoritePokemonFetcher {
     @FunctionalInterface
     public interface OnList { void call(List<Pokemon> pokemons); }
     @FunctionalInterface
-    public interface OnFavorite { void call(String pokedexEntry); }
+    public interface OnFavorite { void call(int pokedexEntry); }
     @FunctionalInterface
     public interface OnFail{ void call(Exception e); }
     private final OnFail _fail;
@@ -55,6 +55,7 @@ public class FavoritePokemonFetcher {
         handler.post(() -> {
             try {
                 _service.favoritePokemon(pokedexEntry);
+                fav.call(pokedexEntry);
             } catch (Exception e){
                 _fail.call(e);
             }
@@ -71,6 +72,7 @@ public class FavoritePokemonFetcher {
         handler.post(() -> {
             try {
                 _service.unfavoritePokemon(pokedexEntry);
+                fav.call(pokedexEntry);
             } catch (Exception e){
                 _fail.call(e);
             }

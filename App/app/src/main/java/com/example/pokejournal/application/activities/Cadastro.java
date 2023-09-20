@@ -9,11 +9,12 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.pokejournal.R;
+import com.example.pokejournal.application.fetchers.pokejournal.UserFetcher;
+import com.example.pokejournal.domain.entities.pokejournal.User;
 import com.example.pokejournal.storage.DatabaseHelper;
 import android.widget.Toast;
 public class Cadastro extends AppCompatActivity {
     EditText username, password, repassword;
-    Button signup;
     DatabaseHelper DB;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -24,40 +25,36 @@ public class Cadastro extends AppCompatActivity {
         username = findViewById (R.id.txtUser);
         password = findViewById(R.id.txtPassword);
         repassword = findViewById(R.id.txtRepassword);
-        signup = findViewById(R.id.btnSingup);
+        Button signup = findViewById(R.id.btnSingup);
 
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String user = username.getText().toString();
-                String pass = password.getText().toString();
-                String repass = repassword.getText().toString();
-                if(user.equals("") ||pass.equals("") || repass.equals(""))
-                    Toast.makeText(Cadastro.this, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
-                else{
-                    if(pass.equals(repass)){
-                        Boolean checkuser = DB.checkDados(user);
-                        if(checkuser==false){
-                            Boolean insert = DB.insertDados(user, pass);
-                            if(insert==true){
-                                Toast.makeText(Cadastro.this, "Cadastrado com sucesso", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                startActivity(intent);
-                            }else{
-                                Toast.makeText(Cadastro.this, "Erro ao logar", Toast.LENGTH_SHORT).show();
+        signup.setOnClickListener(this::onSubmitUser);
+    }
 
-                            }
-                        }
-                        else{
-                            Toast.makeText(Cadastro.this, "Usuário já existente", Toast.LENGTH_SHORT).show();
+    private void onSubmitUser(View v){
+        String user = username.getText().toString();
+        String pass = password.getText().toString();
+        String repass = repassword.getText().toString();
 
-                        }
-                    }else{
-                        Toast.makeText(Cadastro.this, "Senhas não correspondem", Toast.LENGTH_SHORT).show();
+        if(user.equals("") ||pass.equals("") || repass.equals("")){
+            Toast.makeText(Cadastro.this, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-                    }
-                }
-            }
+        if(!pass.equals(repass)) {
+            Toast.makeText(Cadastro.this, "Senhas não correspondem", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        new UserFetcher(
+                e -> Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show() )
+                .register("", user, pass, this::onRegisterUser);
+    }
+
+    private void onRegisterUser(User user){
+        runOnUiThread(() -> {
+            Toast.makeText(this, "Cadastrado com sucesso", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
         });
     }
 }
