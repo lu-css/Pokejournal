@@ -11,12 +11,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.pokejournal.R;
 import com.example.pokejournal.application.fetchers.pokeapi.SearchPokemonFetcher;
+import com.example.pokejournal.application.fetchers.pokejournal.FavoritePokemonFetcher;
 import com.example.pokejournal.application.helpers.ActivityHelper;
 import com.example.pokejournal.domain.entities.core.Pokemon;
 import com.squareup.picasso.Picasso;
 
 public class detalhePokemonActivity extends AppCompatActivity
 {
+    private int pokemonEntry;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +26,7 @@ public class detalhePokemonActivity extends AppCompatActivity
 
         Intent intentDisplay = getIntent();
         String pokemonId = intentDisplay.getStringExtra(ActivityHelper.INTENT_POKEMON_ID);
+        this.pokemonEntry = Integer.parseInt(pokemonId);
         new SearchPokemonFetcher (this::onPokemonSearchFail)
                 .useEvolutionChain(this::onPokemonSearchFinish)
                 .execute(pokemonId);
@@ -89,12 +92,29 @@ public class detalhePokemonActivity extends AppCompatActivity
     }
 
     public void onPokemonSearchFinish(Pokemon pokemon) {
-        runOnUiThread(() -> {
-            renderPokemonInfos(pokemon);
-        });
+        runOnUiThread(() -> renderPokemonInfos(pokemon));
     }
 
     public void onPokemonSearchFail(Exception e) {
         Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+    }
+
+    public void toggleFavorite(View v){
+        FavoritePokemonFetcher fetcher = new FavoritePokemonFetcher(e -> {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        });
+
+        if(true){
+            fetcher.favorite(this.pokemonEntry, ignored -> updateFavorite(true));
+        } else{
+            fetcher.unfavorite(this.pokemonEntry, ignored -> updateFavorite(false));
+        }
+    }
+
+    public void updateFavorite(boolean checked){
+        // TODO: Mudar icone no layout
+        if(checked){
+            return;
+        }
     }
 }
