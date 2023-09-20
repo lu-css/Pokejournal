@@ -3,6 +3,7 @@ package com.example.pokejournal.infra.pokeapi;
 import com.example.pokejournal.adapters.PokeApiAdapter;
 import com.example.pokejournal.adapters.SimpleRequestAdapter;
 import com.example.pokejournal.domain.entities.core.Pokemon;
+import com.example.pokejournal.domain.exceptions.HttpRequestException;
 import com.example.pokejournal.domain.exceptions.MalformedException;
 import com.example.pokejournal.domain.exceptions.NotFoundException;
 import com.example.pokejournal.infra.SimpleRequest.OkHttpSimpleRequest;
@@ -28,13 +29,12 @@ public class PokeApi implements PokeApiAdapter
 
     private JSONObject pokemonRawJson(String query) throws NotFoundException, IOException, MalformedException {
         String formatedQuery = formatPokequery(query);
-        Optional<JSONObject> json = _simpleRequest.simpleGet(BASE_URL + POKEMON_ENDPOINT + formatedQuery);
 
-        if(!json.isPresent()){
-            throw new NotFoundException("Pokemon with query {}, not found");
+        try{
+            return _simpleRequest.simpleGet(BASE_URL + POKEMON_ENDPOINT + formatedQuery);
+        }catch (HttpRequestException e){
+            throw new NotFoundException("");
         }
-
-        return json.get();
     }
     @Override
     public Pokemon pokemonFromQuery(String query) throws NotFoundException, IOException, MalformedException {
@@ -54,14 +54,14 @@ public class PokeApi implements PokeApiAdapter
 
     private JSONObject getEpecies(String query) throws IOException, NotFoundException {
         String pokeQuery = formatPokequery(query);
-         Optional<JSONObject> species = _simpleRequest.simpleGet(BASE_URL + SPECIES_ENDPOINT + pokeQuery);
 
-         if(!species.isPresent()){
-             String msg = String.format("Species from \"%s\" not found", pokeQuery);
-             throw new NotFoundException(msg);
-         }
-
-        return species.get();
+        try {
+            return _simpleRequest.simpleGet(BASE_URL + SPECIES_ENDPOINT + pokeQuery);
+        } catch (HttpRequestException e){
+            throw new NotFoundException("");
+        } catch (MalformedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private JSONObject getEvolutionChain(String query) throws NotFoundException, IOException, MalformedException {
@@ -70,14 +70,8 @@ public class PokeApi implements PokeApiAdapter
 
         try{
             String url = species.getJSONObject("evolution_chain").getString("url");
-            Optional<JSONObject> evolutionChain = _simpleRequest.simpleGet(url);
-
-            if (!evolutionChain.isPresent()){
-                throw new MalformedException("Evolution Chain not found");
-            }
-
-            return evolutionChain.get();
-        } catch (JSONException e){
+            return _simpleRequest.simpleGet(url);
+        } catch (JSONException | HttpRequestException e){
             throw new MalformedException(e.getMessage());
         }
     }

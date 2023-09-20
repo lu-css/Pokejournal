@@ -2,6 +2,7 @@ package com.example.pokejournal.application.services.pokejournal;
 
 import com.example.pokejournal.adapters.PokeJournalAdapter;
 import com.example.pokejournal.domain.entities.pokejournal.PokemonTeam;
+import com.example.pokejournal.domain.exceptions.HttpRequestException;
 import com.example.pokejournal.domain.exceptions.MalformedException;
 import com.example.pokejournal.domain.exceptions.NotFoundException;
 import com.example.pokejournal.domain.usecases.pokejournal.TeamUsecase;
@@ -16,7 +17,7 @@ public class TeamService implements TeamUsecase
         _pokejournal = new PokeJournalAPI(token);
     }
     @Override
-    public List<PokemonTeam> ListTeams() throws MalformedException, NotFoundException, IOException {
+    public List<PokemonTeam> ListTeams() throws MalformedException, NotFoundException, IOException, HttpRequestException {
        return _pokejournal.ListTeams("");
     }
 

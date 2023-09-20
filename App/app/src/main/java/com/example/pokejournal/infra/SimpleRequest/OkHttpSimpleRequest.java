@@ -2,6 +2,8 @@ package com.example.pokejournal.infra.SimpleRequest;
 
 import com.example.pokejournal.adapters.SimpleRequestAdapter;
 import com.example.pokejournal.domain.entities.request.RequestResponse;
+import com.example.pokejournal.domain.exceptions.HttpRequestException;
+import com.example.pokejournal.domain.exceptions.MalformedException;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,37 +26,34 @@ public class OkHttpSimpleRequest implements SimpleRequestAdapter
     }
 
     @Override
-    public Optional<JSONObject> simpleGet(String url) throws IOException  {
+    public JSONObject simpleGet(String url) throws IOException, HttpRequestException, MalformedException {
         OkHttpClient client = new OkHttpClient();
 
         Request request = new Request.Builder().url(url).build();
 
         try(Response response = client.newCall(request).execute() ) {
 
-            if (response.code() != 200){
-                return Optional.empty();
-            }
-
             if(response.body() == null){
-                return Optional.empty();
+                throw new HttpRequestException("Response without a body", response.code(), "");
             }
 
-            String strResponse =  response.body().string();
+            String strResponse = response.body().string();
+
+            if (response.code() != 200){
+                throw new HttpRequestException("Something went wrong", response.code(), strResponse);
+            }
 
             try{
-                return Optional.of(new JSONObject(strResponse));
+                return new JSONObject(strResponse);
             } catch (JSONException e){
-                return Optional.empty();
+                throw new MalformedException("Its not an valid json: " + e.getMessage());
             }
         }
     }
 
     @Override
     public Optional<JSONObject> simplePost(String url, JSONObject body) throws IOException {
-        OkHttpClient client = new OkHttpClient();
-
-        Request.Builder requestbuilder = new Request.Builder()
-                .url(url);
+        Request.Builder requestbuilder = new Request.Builder().url(url);
 
         if(token != null){
             requestbuilder = requestbuilder
