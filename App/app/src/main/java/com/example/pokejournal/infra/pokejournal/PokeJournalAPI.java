@@ -24,7 +24,7 @@ import java.util.Optional;
 
 public class PokeJournalAPI implements PokeJournalAdapter
 {
-    private final String BASE_URL = "https://pokejournal-api.onrender.com";
+    private final String BASE_URL = "<API-URL>";
     private final String POKETEAM_ENDPOINT = "PokeTeam";
     private final String FAVORITE_POKEMON_ENDPOINT = "Pokemon";
     private final SimpleRequestAdapter _simpleRequest;
@@ -76,7 +76,7 @@ public class PokeJournalAPI implements PokeJournalAdapter
             body.put("a", "b");
             Optional<JSONObject> jsonO = _simpleRequest.simplePost(url, body);
 
-            if(jsonO.isPresent()){
+            if(!jsonO.isPresent()){
                 return null;
             }
 

@@ -22,9 +22,8 @@ public class FavoritePokemonFetcher {
     public interface OnFail{ void call(Exception e); }
     private final OnFail _fail;
 
-    public FavoritePokemonFetcher(OnFail fail)
+    public FavoritePokemonFetcher(String token, OnFail fail)
     {
-        String token = "";
         _service = new FavoritePokemonService(token);
         _fail = fail;
     }

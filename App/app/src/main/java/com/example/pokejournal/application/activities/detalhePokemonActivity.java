@@ -1,7 +1,9 @@
 package com.example.pokejournal.application.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -99,8 +101,17 @@ public class detalhePokemonActivity extends AppCompatActivity
         Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
     }
 
+    private String getToken(){
+        SharedPreferences prefs = PreferenceManager
+                .getDefaultSharedPreferences(this);
+
+       return prefs.getString("BEARER_TOKEN", "");
+    }
+
     public void toggleFavorite(View v){
-        FavoritePokemonFetcher fetcher = new FavoritePokemonFetcher(e -> {
+        String token = getToken();
+
+        FavoritePokemonFetcher fetcher = new FavoritePokemonFetcher(token, e -> {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         });
 

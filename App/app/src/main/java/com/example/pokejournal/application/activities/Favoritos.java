@@ -1,8 +1,13 @@
 package com.example.pokejournal.application.activities;
 
+import static com.google.android.material.internal.ContextUtils.getActivity;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,9 +34,14 @@ public class Favoritos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favoritos);
         setupAdapter();
-        String userId = "";
 
-        new FavoritePokemonFetcher(e ->
+        SharedPreferences prefs = PreferenceManager
+                .getDefaultSharedPreferences(this);
+
+        String token = prefs.getString("BEARER_TOKEN", "");
+        String userId = prefs.getString("USER_ID", "");
+
+        new FavoritePokemonFetcher(token, e ->
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show()
         )
         .listAll(userId, this::onLoadPokemons);
