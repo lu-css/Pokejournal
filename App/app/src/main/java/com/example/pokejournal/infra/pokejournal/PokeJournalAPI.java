@@ -43,7 +43,6 @@ public class PokeJournalAPI implements PokeJournalAdapter
         String url = String.format("%s/%s/List/%s", BASE_URL, POKETEAM_ENDPOINT, userId);
         JSONObject json = _simpleRequest.simpleGet(url);
 
-
         try{
             JSONArray teamsJson = json.getJSONArray("data");
 

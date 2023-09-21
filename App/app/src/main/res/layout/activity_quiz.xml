@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:onClick="loadRandomPokemon"
     tools:context=".application.activities.QuizActivity">
 
     <TextView
@@ -34,9 +35,9 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/editext_envio"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
+        android:background="@drawable/editext_envio"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/pokemon_quiz_img"
@@ -48,9 +49,9 @@
             android:id="@+id/resposta_quiz"
             android:layout_width="0dp"
             android:layout_height="48dp"
+            android:layout_marginStart="10dp"
             android:layout_weight="1"
             android:background="@null"
-            android:layout_marginStart="10dp"
             android:hint="@string/search_elements"
             android:imeOptions="actionSearch"
             android:inputType="text"
@@ -92,5 +93,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.573" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Try Again"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

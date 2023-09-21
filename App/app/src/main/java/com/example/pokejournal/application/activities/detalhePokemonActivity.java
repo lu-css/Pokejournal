@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,15 +13,23 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.pokejournal.R;
-import com.example.pokejournal.application.fetchers.pokeapi.SearchPokemonFetcher;
-import com.example.pokejournal.application.fetchers.pokejournal.FavoritePokemonFetcher;
+import com.example.pokejournal.application.fetchers.Fetcher;
 import com.example.pokejournal.application.helpers.ActivityHelper;
+import com.example.pokejournal.application.services.pokeapi.SinglePokemonService;
+import com.example.pokejournal.application.services.pokejournal.FavoritePokemonService;
 import com.example.pokejournal.domain.entities.core.Pokemon;
+import com.example.pokejournal.domain.usecases.pokeapi.SinglePokemonUsecase;
+import com.example.pokejournal.domain.usecases.pokejournal.FavoritePokemonUsecase;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 public class detalhePokemonActivity extends AppCompatActivity
 {
     private int pokemonEntry;
+    private final SinglePokemonUsecase _pokemonService = new SinglePokemonService();
+    private FavoritePokemonUsecase _favoriteService;
+    private boolean favorited = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,9 +38,21 @@ public class detalhePokemonActivity extends AppCompatActivity
         Intent intentDisplay = getIntent();
         String pokemonId = intentDisplay.getStringExtra(ActivityHelper.INTENT_POKEMON_ID);
         this.pokemonEntry = Integer.parseInt(pokemonId);
-        new SearchPokemonFetcher (this::onPokemonSearchFail)
-                .useEvolutionChain(this::onPokemonSearchFinish)
-                .execute(pokemonId);
+
+        String token = getToken();
+        _favoriteService  = new FavoritePokemonService(token);
+
+        Fetcher.async(() -> {
+            try{
+                Pokemon pokemon = _pokemonService.pokemonFromQuery(pokemonId);
+
+                onPokemonSearchFinish(pokemon);
+                ArrayList<Pokemon> evolutionChain = (ArrayList<Pokemon>) _pokemonService.evolutionChain(pokemonId);
+                runOnUiThread(() -> loadEvolutionChain(evolutionChain, pokemon.pokedexEntry));
+            } catch (Exception e){
+                Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override
@@ -51,31 +72,33 @@ public class detalhePokemonActivity extends AppCompatActivity
         ImageView img_pokemon = findViewById(R.id.img_descpokemon);
         ImageView img_fundoPokemon = findViewById(R.id.fundo_pokemon);
 
-        ImageView img_EvoChain1 = findViewById(R.id.img_evo_1);
-        ImageView img_EvoChain2 = findViewById(R.id.img_evo_2);
-        ImageView img_EvoChain3 = findViewById(R.id.img_evo_3);
-
         Picasso.get().load(pokemon.imageSpriteUrl).into(img_pokemon);
-
         txt_pokemonId.setText(pokemon.pokedexEntry);
         txt_pokemonName.setText(pokemon.pokeName);
         txt_pokemonDescription.setText(pokemon.description);
         img_fundoPokemon.setImageResource(ActivityHelper.getPokemonColor(pokemon.pokemonColor));
+    }
+    private void loadEvolutionChain(ArrayList<Pokemon> evolutionChain, String pokedexEntry){
+        ImageView img_EvoChain1 = findViewById(R.id.img_evo_1);
+        ImageView img_EvoChain2 = findViewById(R.id.img_evo_2);
+        ImageView img_EvoChain3 = findViewById(R.id.img_evo_3);
 
-        int evolutionsLength = pokemon.evolutionChain.size();
+        int evolutionsLength = evolutionChain.size();
+        Log.d("POKEMON_DETAIL", String.valueOf(evolutionsLength));
 
         if(evolutionsLength >= 1){
-            loadPokemonImage(pokemon.evolutionChain.get(0), img_EvoChain1, pokemon.pokedexEntry);
+            loadPokemonImage(evolutionChain.get(0), img_EvoChain1, pokedexEntry);
         }
 
         if(evolutionsLength >= 2){
-            loadPokemonImage(pokemon.evolutionChain.get(1), img_EvoChain2, pokemon.pokedexEntry);
+            loadPokemonImage(evolutionChain.get(1), img_EvoChain2, pokedexEntry);
         }
 
         if(evolutionsLength >= 3){
-            loadPokemonImage(pokemon.evolutionChain.get(2), img_EvoChain3, pokemon.pokedexEntry);
+            loadPokemonImage(evolutionChain.get(2), img_EvoChain3, pokedexEntry);
         }
     }
+
     private void loadPokemonImage(Pokemon pokemon, ImageView img, String currentPokemonId){
         Picasso.get().load(pokemon.imageSpriteUrl).into(img);
 
@@ -83,9 +106,7 @@ public class detalhePokemonActivity extends AppCompatActivity
             return;
         }
 
-        img.setOnClickListener((View view) -> {
-            goToDetailPokemon(pokemon.pokedexEntry);
-        });
+        img.setOnClickListener( view -> goToDetailPokemon(pokemon.pokedexEntry) );
     }
 
     private void goToDetailPokemon(String pokemonId){
@@ -97,10 +118,6 @@ public class detalhePokemonActivity extends AppCompatActivity
         runOnUiThread(() -> renderPokemonInfos(pokemon));
     }
 
-    public void onPokemonSearchFail(Exception e) {
-        Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
-    }
-
     private String getToken(){
         SharedPreferences prefs = PreferenceManager
                 .getDefaultSharedPreferences(this);
@@ -109,23 +126,31 @@ public class detalhePokemonActivity extends AppCompatActivity
     }
 
     public void toggleFavorite(View v){
-        String token = getToken();
+        Fetcher.async(() -> {
+            try {
+                if(favorited){
+                    _favoriteService.unfavoritePokemon(pokemonEntry);
+                } else{
+                    _favoriteService.favoritePokemon(pokemonEntry);
+                }
 
-        FavoritePokemonFetcher fetcher = new FavoritePokemonFetcher(token, e -> {
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                favorited = !favorited;
+
+                updateFavorite(favorited);
+            } catch (Exception e){
+                runOnUiThread(() -> Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show());
+            }
         });
-
-        if(true){
-            fetcher.favorite(this.pokemonEntry, ignored -> updateFavorite(true));
-        } else{
-            fetcher.unfavorite(this.pokemonEntry, ignored -> updateFavorite(false));
-        }
     }
 
     public void updateFavorite(boolean checked){
-        // TODO: Mudar icone no layout
-        if(checked){
-            return;
-        }
+        runOnUiThread(() -> {
+            Toast.makeText(this, checked ? "Pokemon favoritado" : "Pokemon desfavoritado", Toast.LENGTH_SHORT).show();
+            // TODO: Mudar icone no layout
+            if(checked){
+                return;
+            }
+        });
+
     }
 }

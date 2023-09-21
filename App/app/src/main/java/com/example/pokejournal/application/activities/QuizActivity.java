@@ -11,14 +11,17 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.pokejournal.R;
-import com.example.pokejournal.application.fetchers.pokeapi.RandomPokemonFetcher;
+import com.example.pokejournal.application.fetchers.Fetcher;
 import com.example.pokejournal.application.helpers.ImageHelper;
+import com.example.pokejournal.application.services.pokeapi.SinglePokemonService;
 import com.example.pokejournal.domain.entities.core.Pokemon;
+import com.example.pokejournal.domain.usecases.pokeapi.SinglePokemonUsecase;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 public class QuizActivity extends AppCompatActivity
 {
+    private final SinglePokemonUsecase _pokemonService = new SinglePokemonService();
     private ImageView img_pokemonQuiz;
     private EditText txt_pokemon;
     private String pokemonName;
@@ -31,10 +34,15 @@ public class QuizActivity extends AppCompatActivity
         loadRandomPokemon(null);
     }
 
-    private void loadRandomPokemon(View v){
-        new RandomPokemonFetcher
-                (this::onLoadRandomPokemon,this::onFailRandomPokemon)
-            .execute();
+    public void loadRandomPokemon(View v){
+        Fetcher.async(() -> {
+            try{
+                Pokemon pokemon = _pokemonService.randomPokemon();
+                onLoadRandomPokemon(pokemon);
+            } catch (Exception e){
+                runOnUiThread(() -> Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG));
+            }
+        });
     }
 
     private void loadViews(){
@@ -83,9 +91,5 @@ public class QuizActivity extends AppCompatActivity
 
     public void onLoadRandomPokemon(Pokemon pokemon) {
         runOnUiThread(() -> renderPokemon(pokemon) );
-    }
-
-    public void onFailRandomPokemon(Exception exception) {
-        Toast.makeText(this, exception.getMessage(), Toast.LENGTH_SHORT).show();
     }
 }

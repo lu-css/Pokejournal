@@ -29,7 +29,12 @@ public class OkHttpSimpleRequest implements SimpleRequestAdapter
     public JSONObject simpleGet(String url) throws IOException, HttpRequestException, MalformedException {
         OkHttpClient client = new OkHttpClient();
 
-        Request request = new Request.Builder().url(url).build();
+        Request request;
+        try{
+             request = new Request.Builder().url(url).build();
+        } catch (Exception e){
+            throw new MalformedException("Connection to PokeJournal API Failed, pleace try again later");
+        }
 
         try(Response response = client.newCall(request).execute() ) {
 

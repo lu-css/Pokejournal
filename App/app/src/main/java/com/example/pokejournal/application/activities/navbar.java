@@ -14,18 +14,24 @@ public class navbar extends AppCompatActivity {
         setContentView(R.layout.activity_navbar);
     }
 
-    public void goCadastro(View v){
-        Intent intent = new Intent (navbar.this, Cadastro.class);
+    private void openAcivity(Class<?> c){
+        Intent intent = new Intent (navbar.this, c);
         startActivity(intent);
+    }
+
+    public void goCadastro(View v){
+        openAcivity(Cadastro.class);
     }
 
     public void goTelaInicial(View v){
-        Intent intent = new Intent(navbar.this, tela_inicial.class);
-        startActivity(intent);
+        openAcivity(tela_inicial.class);
+    }
+
+    public void goFavoritos(View v){
+        openAcivity(Favoritos.class);
     }
 
     public void goQuiz(View v){
-        Intent intent = new Intent(navbar.this, QuizActivity.class);
-        startActivity(intent);
+        openAcivity(QuizActivity.class);
     }
 }
