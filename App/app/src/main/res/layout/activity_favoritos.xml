@@ -1,9 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FFFFFF"
     tools:context=".application.activities.Favoritos">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:background="@drawable/toolbar_header"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <ImageView
+                    android:id="@+id/pokedexlogo"
+                    android:layout_width="105dp"
+                    android:layout_height="38dp"
+                    android:background="@drawable/pokedexlogoo"
+                    android:contentDescription="@string/imglogoPokedex" />
+
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/img_linha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/line"
+                android:contentDescription="@string/imglinha" />
+
+            <TextView
+                android:id="@+id/txtOrientação"
+                android:layout_width="264dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="20dp"
+                android:contentDescription="@string/Texto_Orientação"
+                android:fontFamily="@font/inter_extrabold"
+                android:text="Your Favorite Pokemons!"
+                android:textColor="#504C4C"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <GridView
+            android:id="@+id/pokemonCardsList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginBottom="23dp"
+            android:numColumns="2" />
+
+    </LinearLayout>
+</RelativeLayout>
